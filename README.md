@@ -1,1 +1,3 @@
 # Ryhmäprojekti1
+
+1. 
