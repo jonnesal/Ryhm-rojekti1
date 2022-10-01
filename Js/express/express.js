@@ -21,9 +21,34 @@ const query = util.promisify(con.query).bind(con);
 
 
 /**
- * Tällä hetkellä etsii jokaisen leffan suosikeista
+ * Hakee käyttäjän user_ID:n avulla suosikin tiedot
  */
 app.get('/user/favorite', function(req, res) {
+    let q = url.parse(req.url, true).query;
+    let favorite = q.favorite;
+    let sql = "select * from favorite" +
+        "where user_ID in (" +
+        "select user_ID" +
+        "from user" +
+        "where user_ID =  ? )";
+
+
+
+    (async function() {
+        try {
+            const rows = await query(sql, [favorite]);
+            res.send(rows);
+        } catch (err) {
+            console.log("Database error. " + err);
+        }
+    })()
+})
+
+
+/**
+ * Get all parties.
+ */
+app.get('/user/allfavorites', function(req, res) {
     let sql = "SELECT *" +
         " FROM favorite";
 
