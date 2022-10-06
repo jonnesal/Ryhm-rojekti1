@@ -21,10 +21,12 @@ const query = util.promisify(connection.query).bind(connection);
 const loginRoute = require('./routes/login');
 const searchRouter = require('./routes/search');
 const rouletteRouter = require('./routes/roulette')
+const registerRouter = require('./routes/register');
 
-app.use('/lo', loginRoute);
+app.use('/', loginRoute);
 app.use('/', searchRouter);
 app.use('/', rouletteRouter);
+app.use('/', registerRouter);
 
 app.get("/", (req, res) => {
     res.send({ data: "Here is your data" });});
