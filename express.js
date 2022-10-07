@@ -20,18 +20,19 @@ const query = util.promisify(connection.query).bind(connection);
 
 const loginRoute = require('./routes/login');
 const searchRouter = require('./routes/search');
-const rouletteRouter = require('./routes/roulette')
+const rouletteRouter = require('./routes/rouletteRouter')
 
-app.use('/lo', loginRoute);
+app.use('/', loginRoute);
 app.use('/', searchRouter);
 app.use('/', rouletteRouter);
 
 app.get("/", (req, res) => {
-    res.send({ data: "Here is your data" });});
+    res.send({ data: "Here is your data" });
+});
 
 
 
-    
+
 const server = app.listen(PORT, function() {
     const host = server.address().address;
     const port = server.address().port;
