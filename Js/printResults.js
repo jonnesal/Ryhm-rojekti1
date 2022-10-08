@@ -31,7 +31,7 @@ const printResults = (results) => {
             cover.alt = "Cover of " + results.results[i].original_name;
         }
 
-        cover.style = "width:15%";
+        cover.style = "width:100%";
 
         resultsDiv.appendChild(entertainment);
         entertainment.appendChild(cover);
