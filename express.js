@@ -20,17 +20,48 @@ const query = util.promisify(connection.query).bind(connection);
 
 const loginRoute = require('./routes/login');
 const searchRouter = require('./routes/search');
-const rouletteRouter = require('./routes/rouletteRouter')
 
 app.use('/', loginRoute);
 app.use('/', searchRouter);
-app.use('/', rouletteRouter);
 
 app.get("/", (req, res) => {
     res.send({ data: "Here is your data" });
 });
 
 
+searchRouter.get('/api/favorites', function(req, res) {
+    let sql = "SELECT *" +
+        " FROM favorite";
+
+    (async function() {
+        try {
+            const rows = await query(sql);
+            res.send(rows);
+        } catch (err) {
+            console.log("Database error. " + err);
+        }
+    })()
+})
+
+searchRouter.post('/api/favorites', function(req, res) {
+    let response = false;
+    let sql = "INSERT INTO favorite (name, rating, date, imageURL, user_id)" +
+        " VALUES (?, ?, ?, ?, ?)";
+
+    (async function() {
+        try {
+            let result = await query(sql, [req.body.name, req.body.rating, req.body.dateAdded,
+                req.body.posterPath, req.body.userId
+            ]);
+            if (result.affectedRows != 0) {
+                response = true;
+            }
+        } catch (err) {
+            console.log("Database error. " + err);
+        }
+        res.send(response);
+    })()
+})
 
 
 const server = app.listen(PORT, function() {
