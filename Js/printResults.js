@@ -1,6 +1,6 @@
 const resultsDiv = document.querySelector("#results");
 let searchAmount;
-
+let entertainmentName;
 
 
 const searchUrl = (url, Amount) => {
@@ -23,20 +23,39 @@ const printResults = (results) => {
         cover.src = "https://image.tmdb.org/t/p/original/" + results.results[i].poster_path
         const title = document.createElement("p");
 
+        //Elokuva    Elokuvassa ja sarjassa pitää hakea eri nimisistä tauluista tietoa tässä se katsoo kumpi on sivulla valittu
+        //ja hakee sen perusteella
         if (document.querySelector('input[name="roulette"]:checked').value == 1) {
             title.innerText = results.results[i].original_title;
             cover.alt = "Cover of " + results.results[i].original_title;
+            entertainmentName = results.results[i].original_title;
+
+            //Sarja
         } else {
             title.innerText = results.results[i].original_name;
             cover.alt = "Cover of " + results.results[i].original_name;
+            entertainmentName = results.results[i].original_name;
         }
 
         cover.style = "width:100%";
 
+        //favorite button
+        const favorite = document.createElement("button");
+        favorite.innerText = "favorite";
+
+        //tallenetaan kyseisen favoriten tiedot
+        favorite.addEventListener("click", () => {
+            localStorage.setItem("Results", JSON.stringify(results));
+            localStorage.setItem("Position", i);
+            putToFavorite(entertainmentName);
+        });
+
         resultsDiv.appendChild(entertainment);
         entertainment.appendChild(cover);
         entertainment.appendChild(title);
+        resultsDiv.appendChild(favorite);
 
+        //tallenetaan tiedot jotta niitä voidaan käyttää searchDetails
         entertainment.addEventListener("click", () => {
             localStorage.setItem("Results", JSON.stringify(results));
             localStorage.setItem("Position", i);
