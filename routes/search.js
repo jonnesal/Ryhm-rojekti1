@@ -16,8 +16,8 @@ const connection = require('../js/databaseConnection');
 
 
 
-searchRouter.get(`/elokuvat`, async function (req, res) {
-//Siirrän tämän koodin jossain vaiheessa omaan Js fileen
+searchRouter.get(`/elokuvat`, async function(req, res) {
+    //Siirrän tämän koodin jossain vaiheessa omaan Js fileen
 
     //let movie = "Home alone";
 
@@ -50,7 +50,7 @@ searchRouter.get(`/elokuvat`, async function (req, res) {
     ]
 
 
-    const search = genres.find((name) => name.name=== whatGenre);
+    const search = genres.find((name) => name.name === whatGenre);
 
     console.log(search.id);
 
@@ -60,7 +60,7 @@ searchRouter.get(`/elokuvat`, async function (req, res) {
     async function haeSarja() {
 
         const fetch = (...args) =>
-            import('node-fetch').then(({default: fetch}) => fetch(...args));
+            import ('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 
         /////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ searchRouter.get(`/elokuvat`, async function (req, res) {
             response = await response.json();
 
             //Kovakoodasin max limit ja muuttaa json filen listaksi
-            for(let i = 0; i<9; i++) {
+            for (let i = 0; i < 9; i++) {
                 Movielist.push(response["results"][i]);
             }
             console.log(Movielist);

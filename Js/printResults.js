@@ -22,6 +22,7 @@ const printResults = (results) => {
         const cover = document.createElement("img");
         cover.src = "https://image.tmdb.org/t/p/original/" + results.results[i].poster_path
         const title = document.createElement("p");
+        const description = document.createElement("p");
 
         //Elokuva    Elokuvassa ja sarjassa pitää hakea eri nimisistä tauluista tietoa tässä se katsoo kumpi on sivulla valittu
         //ja hakee sen perusteella
@@ -36,6 +37,9 @@ const printResults = (results) => {
             cover.alt = "Cover of " + results.results[i].original_name;
             entertainmentName = results.results[i].original_name;
         }
+        description.innerText = results.results[i].overview;
+        let posterPath = results.results[i].poster_path;
+        let rating = results.results[i].vote_average;
 
         cover.style = "width:100%";
 
@@ -47,13 +51,15 @@ const printResults = (results) => {
         favorite.addEventListener("click", () => {
             localStorage.setItem("Results", JSON.stringify(results));
             localStorage.setItem("Position", i);
-            putToFavorite(entertainmentName);
+            putToFavorite(entertainmentName, rating, posterPath);
         });
 
         resultsDiv.appendChild(entertainment);
         entertainment.appendChild(cover);
         entertainment.appendChild(title);
+        resultsDiv.appendChild(description);
         resultsDiv.appendChild(favorite);
+
 
         //tallenetaan tiedot jotta niitä voidaan käyttää searchDetails
         entertainment.addEventListener("click", () => {
