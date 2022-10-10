@@ -1,3 +1,7 @@
+DROP DATABASE moseDB;
+CREATE DATABASE moseDB;
+use moseDB;
+
 CREATE TABLE users
 (
   user_id INT NOT NULL AUTO_INCREMENT,
@@ -29,5 +33,5 @@ CREATE TABLE History
   based VARCHAR(40) NOT NULL,
   user_id INT NOT NULL,
   PRIMARY KEY (history_ID),
-  FOREIGN KEY (user_id) REFERENCES User(user_id)
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
 );

@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "startexp": "nodemon Js/express/express.js"
+        "startexp": "nodemon ./express.js"
     },
     "dependencies": {
         "body-parser": "^1.20.0",
