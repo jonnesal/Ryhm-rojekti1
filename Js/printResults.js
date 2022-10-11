@@ -57,7 +57,7 @@ const printResults = (results) => {
         resultsDiv.appendChild(entertainment);
         entertainment.appendChild(cover);
         entertainment.appendChild(title);
-        resultsDiv.appendChild(description);
+        //resultsDiv.appendChild(description);
         resultsDiv.appendChild(favorite);
 
 

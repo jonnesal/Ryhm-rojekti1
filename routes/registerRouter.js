@@ -35,16 +35,9 @@ app.use(cookieParser());
 
 
 
-registerRouter.get('/register', (req, res) => {
-	res.sendFile(`${process.cwd()}/html/register.html`);
-});
 
 
-
-
-
-
-registerRouter.post('/register', encoderUrl, (req, res) => {
+/*registerRouter.post('/register', encoderUrl, (req, res) => {
 
 	//checking if user already registered or no
 	connection.query(`SELECT * FROM users WHERE user_name = '${req.body.userName}' AND user_pass = '${req.body.password}'`, function (err, result) {
@@ -68,15 +61,18 @@ registerRouter.post('/register', encoderUrl, (req, res) => {
 				} catch (err) {
 					console.log("Database error. " + err);
 				}
-				res.send(response);
+				res.redirect('/roulette');
 			})()
 		}
 	})
 
 })
+*/
 
 
-
-
+// when register is success
+registerRouter.get("/roulette", function (req, res) {
+	res.sendFile(`${process.cwd()}/roulette.html`);
+})
 
 module.exports = registerRouter;

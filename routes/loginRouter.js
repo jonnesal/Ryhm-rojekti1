@@ -24,7 +24,7 @@ router.post("/", encoder, function(req, res) {
 
     connection.query("select * from users where user_name = ? and user_pass = ?", [username, password], function(error, results, fields) {
         if (results.length > 0) {
-            res.redirect("/welcome");
+            res.redirect("/roulette");
         } else {
             res.redirect("/loginpage");
         }
@@ -32,10 +32,11 @@ router.post("/", encoder, function(req, res) {
     })
 })
 
-// when login is success
-router.get("/welcome", function(req, res) {
-    res.sendFile(`${process.cwd()}/html/welcome.html`);
-})
 
+
+// when login is success
+// router.get("/roulette", function(req, res) {
+//     res.sendFile(`${process.cwd()}/roulette.html`);
+// })
 
 module.exports = router;
