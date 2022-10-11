@@ -21,9 +21,9 @@ function login() {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onload = function() {
         console.log("xhr" + xhr.responseText);
-        if (xhr.responseText) {
+        if (xhr.responseText == "true") {
             console.log("Bool toimii");
-            window.location.href = "../html/main.html";
+             window.location.href = "../html/main.html";
         } else {
             console.log("bool ei toimi");
         }

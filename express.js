@@ -8,11 +8,15 @@ const cors = require('cors');
 const app = express();
 
 
-app.use(cors({ origin: '*' }));
+app.use(cors({
+    origin: '*'
+}));
 
 const PORT = 8080;
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(bodyParser.json());
 
 const connection = require('./js/databaseconnection');
@@ -29,7 +33,7 @@ app.use('/', registerRouter);
 
 
 // styles for main
-app.use(express.static(path.join(__dirname+ "css")));
+app.use(express.static(path.join(__dirname + "css")));
 
 
 app.get("/", (req, res) => {
@@ -70,9 +74,9 @@ app.get("/style", (req, res) => {
 
 
 app.get('/api/register', (req, res) => {
-	let sql = "SELECT * FROM users";
+    let sql = "SELECT * FROM users";
 
-    (async function() {
+    (async function () {
         try {
             const rows = await query(sql);
             res.send(rows);
@@ -83,11 +87,11 @@ app.get('/api/register', (req, res) => {
 });
 
 
-app.post('/api/register', function(req, res) {
+app.post('/api/register', function (req, res) {
     let response = false;
     let sql = "INSERT INTO users (first_name, last_name, user_name, user_pass)" +
-				" VALUES (?, ?, ?, ?)";
-    (async function() {
+        " VALUES (?, ?, ?, ?)";
+    (async function () {
         try {
             let result = await query(sql, [req.body.fname, req.body.lname, req.body.username, req.body.password]);
             if (result.affectedRows != 0) {
@@ -101,21 +105,23 @@ app.post('/api/register', function(req, res) {
 })
 
 
-app.post('/api/login', function(req,res) {
-    let response = false;
+app.post('/api/login', function (req, res) {
+    let response = "false";
     let sql = "SELECT * FROM users WHERE user_name = ? AND user_pass = ?";
-    (async function() {
-        try {
-            const result = await query(sql, [req.body.username, req.body.password]);
-            if (result.affectedRows != 0) {
-                response = true;
-            }
-        } catch (err) {
-            console.log("Database error. " + err);
+
+
+    query(sql, [req.body.username, req.body.password], function (err, results) {
+        if (results.length > 0) {
+            console.log("if toimii");
+            response = "true";
+        } else {
+            console.log("if ei toimi");
         }
-        console.log("testiiiiiiiiiiiiiii"+req.body.username);
         res.send(response);
-    })()
+    });
+
+
+
 })
 
 
@@ -124,11 +130,11 @@ app.post('/api/login', function(req,res) {
 
 
 
-searchRouter.get('/api/favorites', function(req, res) {
+searchRouter.get('/api/favorites', function (req, res) {
     let sql = "SELECT *" +
         " FROM favorite";
 
-    (async function() {
+    (async function () {
         try {
             const rows = await query(sql);
             res.send(rows);
@@ -138,12 +144,12 @@ searchRouter.get('/api/favorites', function(req, res) {
     })()
 })
 
-searchRouter.post('/api/favorites', function(req, res) {
+searchRouter.post('/api/favorites', function (req, res) {
     let response = false;
     let sql = "INSERT INTO favorite (name, rating, date, imageURL, user_id)" +
         " VALUES (?, ?, ?, ?, ?)";
 
-    (async function() {
+    (async function () {
         try {
             let result = await query(sql, [req.body.name, req.body.rating, req.body.dateAdded,
                 req.body.posterPath, req.body.userId
@@ -159,7 +165,7 @@ searchRouter.post('/api/favorites', function(req, res) {
 })
 
 
-const server = app.listen(PORT, function() {
+const server = app.listen(PORT, function () {
     const host = server.address().address;
     const port = server.address().port;
 
