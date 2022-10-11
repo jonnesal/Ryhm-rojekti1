@@ -16,7 +16,7 @@ const printResults = (results) => {
 
     for (let i = 0; i < searchAmount; i++) {
         const entertainment = document.createElement("a");
-        entertainment.href = "searchDetails.html";
+        entertainment.href = "../html/searchDetails.html";
         entertainment.className = "entertainment";
 
         const cover = document.createElement("img");
