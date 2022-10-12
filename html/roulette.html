@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Roulette | WTW</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body>
+
+    <p class="bigtext">Make your selections and spin the roulette!</p>
+
+    <div class="midroulette">
+
+        <div class="buttons">
+
+            <div class="button" id="roulette">
+                <label>
+               <input type="radio" name="roulette" id="moviesRadio" value="1"><span>Movies</span>
+            </label>
+            </div>
+
+            <div class="button" id="roulette">
+                <label>
+               <input type="radio" name="roulette" id="showsRadio" value="2"><span>Shows</span>
+            </label>
+            </div>
+
+        </div>
+
+        <hr class="separator" id="roulette_separator">
+
+        <div class="imageplaceholder" id="results">
+            <img class="poster" src="" onerror="this.style.display='none'"></img>
+        </div>
+
+    </div>
+
+    <button class="search" id="roulette_search">
+    <label>
+        <span>Search</span>
+    </label>
+</button>
+
+
+
+    <script defer src="../Js/favorite.js"></script>
+    <script defer src="../Js/printResults.js"></script>
+    <script defer src="../Js/random.js"></script>
+
+    <footer>
+        <p class="footertext">Design by Emsa<br>Powered by TMDB</p>
+    </footer>
+</body>
+
+</html>
