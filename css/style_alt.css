@@ -55,13 +55,13 @@ h1 {
     transform: scale(2);
 }
 
-#register {
+#registeredquestion {
     font-size: calc(3.9px + (15 - 3.9) * ((100vw - 500px) / (1920 - 500)));
     color: var(--white);
     text-decoration: none;
 }
 
-#register:hover {
+#registeredquestion:hover {
     color: var(--footer);
 }
 
@@ -105,6 +105,7 @@ button {
 
 button:hover {
     background-color: var(--footer);
+    cursor: pointer;
 }
 
 span {
