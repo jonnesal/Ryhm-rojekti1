@@ -12,7 +12,9 @@ Jos et tiedä, mitä haluat katsoa, voit käyttää tuotettamme löytämään va
 
 # Asennuksen alkuvaiheet
 
-Avaa Git Bash haluamaasi hakemistoon ja syötä komento ```git clone https://github.com/jonnesal/Ryhmaprojekti1.git```
+Avaa Git Bash haluamaasi hakemistoon ja syötä komento: 
+
+```git clone https://github.com/jonnesal/Ryhmaprojekti1.git```
 
 Avaa haluamasi terminaali projektin sisään mihin syötät komennon ```npm install```
 	
@@ -20,16 +22,16 @@ Avaa haluamasi terminaali projektin sisään mihin syötät komennon ```npm inst
 
 # Käytetyt paketit
 
-body-parser
-cors
-express
-mysql
-path
-nodemon
+- body-parser
+- cors
+- express
+- mysql
+- path
+- nodemon
 # Serverin käynnistys
 
 Serveri käynnistyy komennolla:
- npm run startexp
+ ```npm run startexp```
 
 Jonka jälkeen pystytään kommunikoimaan serverin kanssa
 
@@ -51,7 +53,7 @@ module.exports = {
 ```
 
 
-### Database structure
+## Database structure
 
 ```shell
 DROP DATABASE moseDB;
