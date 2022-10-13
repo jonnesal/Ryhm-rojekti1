@@ -2,31 +2,35 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"/>
+    <meta charset="utf-8">
+    <title>Login | WTW</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <link rel="stylesheet" type="text/css" href="../css/style_alt.css">
 </head>
 
 <body>
-    <section class="box">
-        <div class="design">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="form">
-            <h2>User Login</h2>
-            <form action="/" method="POST">
-                <input type="email" id="username" name="username" class="input-field" placeholder="Username" />
-                <input type="password" id="password" name="password" class="input-field" placeholder="Password" />
 
+    <a href="main.html"><span id="home" class="material-symbols-rounded">home</span></a>
+
+    <div class="box">
+        <h1>What To Watch</h1>
+            <form action="/login" method="POST">
+                <input type="email" id="username" name="username" class="input-field" placeholder="Username" spellcheck="false"/>
+                <input type="password" id="password" name="password" class="input-field" placeholder="Password" spellcheck="false"/>
             </form>
-        </div>
-    </section>
-    
-    <button type="submit" id="loginButton" class="btn">LOGIN</button>
-    <script defer src="../Js/login.js"></script>
-</body>
+        <button type="submit"><span>Log in</span></button>
+        <br>
+        <br>
+        <a id="register" href="register.html">Need to register first?</a>
+    </div>    
 
+<footer>
+<p class="footertext">Design by Emsa<br>Powered by TMDB</p>
+</footer>
+<script defer src="../Js/login.js"></script>
+</body>
 </html>

@@ -2,34 +2,37 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register </title>
-    <!--<link type="text/css" rel="stylesheet" href="/styles/loginStyles.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"/>
+    <meta charset="utf-8">
+    <title>Register | WTW</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/style_alt.css">
 </head>
 
 <body>
-    <section class="box">
-        <div class="design">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="form">
-            <h2>Register Form</h2>
+
+    <a href="main.html"><span id="home" class="material-symbols-rounded">home</span></a>
+
+    <div class="box">
+        <h1>What To Watch</h1>
             <form action="/register" method="POST">
-                <input type="text" id="fname" name="firstName" class="input-field" placeholder="First Name" />
-                <input type="text" id="lname" name="lastName" class="input-field" placeholder="Last Name">
-                <input type="email" id="userName" name="userName" class="input-field" placeholder="Username" />
-                <input type="password" id="password" name="password" class="input-field" placeholder="Password" />
+                <input type="text" id="fname" name="firstName" class="input-field" placeholder="First Name" spellcheck="false"/>
+                <input type="text" id="lname" name="lastName" class="input-field" placeholder="Last Name" spellcheck="false"/>
+                <input type="email" id="userName" name="userName" class="input-field" placeholder="Username" spellcheck="false"/>
+                <input type="password" id="password" name="password" class="input-field" placeholder="Password" spellcheck="false"/>
             </form>
-        </div>
-    </section>
-    
-    <button id="register">Register</button>
-    <script defer src="../Js/register.js"></script>
+        <button type="submit"><span>Register</span></button>
+        <br>
+        <br>
+        <a id="register" href="login.html">Already registered?</a>
+    </div>    
 
+<footer>
+<p class="footertext">Design by Emsa<br>Powered by TMDB</p>
+</footer>
+<script defer src="../Js/register.js"></script>
 </body>
-
 </html>
