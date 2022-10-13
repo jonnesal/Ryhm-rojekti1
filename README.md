@@ -57,7 +57,7 @@ module.exports = {
 
 ```shell
 DROP DATABASE moseDB;
-CREATE DATABASE moseDB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;;
+CREATE DATABASE moseDB;
 use moseDB;
  
 CREATE TABLE users
