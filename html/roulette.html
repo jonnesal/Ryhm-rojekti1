@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fi">
+<html lang="en">
 
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,13 @@
 
 <body>
 
+    <div class="navbar">
+        <span><a class="navitems" href="favorites.html">Favorites</a></span>
+        <span><a class="navitems" href="login.html">Login</a></span>
+        <span><a class="navitems" href="register.html">Register</a></span>
+        <span><div id="username"></div></span>
+    </div>
+
     <p class="bigtext">Make your selections and spin the roulette!</p>
 
     <div class="midroulette">
@@ -21,14 +28,14 @@
 
             <div class="button" id="roulette">
                 <label>
-               <input type="radio" name="roulette" id="moviesRadio" value="1"><span>Movies</span>
-            </label>
+                    <input type="radio" name="roulette" id="moviesRadio" value="1"><span>Movies</span>
+                </label>
             </div>
 
             <div class="button" id="roulette">
                 <label>
-               <input type="radio" name="roulette" id="showsRadio" value="2"><span>Shows</span>
-            </label>
+                    <input type="radio" name="roulette" id="showsRadio" value="2"><span>Shows</span>
+                </label>
             </div>
 
         </div>
@@ -36,26 +43,21 @@
         <hr class="separator" id="roulette_separator">
 
         <div class="imageplaceholder" id="results">
-            <img class="poster" src="" onerror="this.style.display='none'"></img>
         </div>
 
     </div>
 
     <button class="search" id="roulette_search">
-    <label>
-        <span>Search</span>
-    </label>
-</button>
+        <label>
+            <span>Search</span>
+        </label>
+    </button>
 
-
-
-    <script defer src="../Js/favorite.js"></script>
-    <script defer src="../Js/printResults.js"></script>
-    <script defer src="../Js/random.js"></script>
-
-    <footer>
-        <p class="footertext">Design by Emsa<br>Powered by TMDB</p>
-    </footer>
+<footer>
+<p class="footertext">Design by Emsa<br>Powered by TMDB</p>
+</footer>
+<script defer src="../Js/favorite.js"></script>
+<script defer src="../Js/printResults.js"></script>
+<script defer src="../Js/random.js"></script>
 </body>
-
 </html>

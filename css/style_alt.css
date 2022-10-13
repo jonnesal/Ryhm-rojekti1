@@ -1,0 +1,127 @@
+:root {
+    --background: #101119;
+    --lighterbackground: #14151d;
+    --footer: #373947;    
+    --yellow: #DEC62B;
+    --mint: #00A388;
+    --white: #EEF5FC;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    max-width: 100%;
+    background-color: var(--background);    
+    -ms-overflow-style: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body, button, input {
+    font-family: "Manrope", sans-serif;
+    font-weight: 200;
+}
+
+body, button {
+    letter-spacing: 1px;
+}
+
+#home {
+    font-size: 60px;
+    color: var(--white);
+    position: absolute;
+    top: 6%;
+    left: 3%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-size: calc(7.8px + (30 - 7.8) * ((100vw - 500px) / (1920 - 500)));
+    color: var(--white);
+    line-height: 0px;
+    padding-bottom: calc(2.6px + (10 - 2.6) * ((100vw - 500px) / (1920 - 500)));
+}
+
+.box {
+    transform: scale(2);
+}
+
+#register {
+    font-size: calc(3.9px + (15 - 3.9) * ((100vw - 500px) / (1920 - 500)));
+    color: var(--white);
+    text-decoration: none;
+}
+
+#register:hover {
+    color: var(--footer);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(1.3px + (5 - 1.3) * ((100vw - 500px) / (1920 - 500)));
+}
+
+input {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-color: var(--white);
+    width: calc(45.57px + (175 - 45.57) * ((100vw - 500px) / (1920 - 500)));
+    height: calc(4.68px + (18 - 4.68) * ((100vw - 500px) / (1920 - 500)));
+}
+
+input::placeholder{
+    font-size: calc(3.64px + (14 - 3.64) * ((100vw - 500px) / (1920 - 500)));
+    color: #C7C7C7;
+}
+
+input, select, textarea {
+    color: var(--background);
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+    outline: none;
+}
+
+button {
+    background-color: var(--background);
+    border-color: var(--white);
+    color: var(--white);
+    margin-top: calc(2.6px + (10 - 2.6) * ((100vw - 500px) / (1920 - 500)));
+    border-style: solid;
+    border-width: 1px;
+}
+
+button:hover {
+    background-color: var(--footer);
+}
+
+span {
+    display: flex;
+    justify-content: center;
+    font-size: calc(3.38px + (13 - 3.38) * ((100vw - 500px) / (1920 - 500)));
+}
+
+footer {
+    position: absolute;
+    top: 97.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.footertext {
+    text-align: center;
+    color: var(--footer);
+    font-size: calc(3.9px + (15 - 3.9) * ((100vw - 500px) / (1920 - 500)));
+}
