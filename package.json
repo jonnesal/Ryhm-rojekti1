@@ -10,6 +10,7 @@
         "express-session": "^1.17.3",
         "http": "^0.0.1-security",
         "http-server": "^14.1.1",
+        "mariadb": "^3.0.2",
         "mysql": "^2.18.1",
         "node-fetch": "^3.2.10",
         "nodemon": "^2.0.20",
