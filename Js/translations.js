@@ -6,19 +6,38 @@ let value;
 //Switch select koodi
 //Vaihtaa valittuun kieleen
 function  changeLang(selectedValue){
-
     if(selectedValue === undefined) {
         value = "en";
     }else{
         value = selectedValue.value;
         localStorage.clear();
         localStorage.setItem("lang" ,  value);
-        let test = localStorage.getItem("lang");
-
         setLocale(value);
     }
 
 }
+//Ottaa hidden label elementit, kääntää ne ja lähettää niitten arvot
+//Uusiksi placeholdereiksi
+function changePlaceHolders() {
+    try{
+
+        let firstName = document.getElementById('firstName');
+        let lastName = document.getElementById('lastName');
+        let username = document.getElementById('placeholderName');
+        let password = document.getElementById('PlaceholderPass');
+
+        if(firstName !== null) {
+            document.getElementsByName('firstName')[0].placeholder=firstName.innerText;
+            document.getElementsByName('lastName')[0].placeholder=lastName.innerText;
+            document.getElementsByName('userName')[0].placeholder=username.innerText;
+            document.getElementsByName('password')[0].placeholder=password.innerText;
+        }else{
+            document.getElementsByName('username')[0].placeholder=username.innerText;
+            document.getElementsByName('password')[0].placeholder=password.innerText;
+        }
+    }catch (e){}
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
     // Käännetään sivu defaultLocale kieleen
@@ -64,13 +83,13 @@ function translatePage() {
         .querySelectorAll("[data-i18n-key]")
         .forEach(translateElement);
 }
-
-// Replace the inner text of the given HTML element
-// with the translation in the active locale,
 // Vaihdetaan html elementin kieli aktiiviseen locale arvoon
+//Tämä function kutsutaan vikana
 
 function translateElement(element) {
     const key = element.getAttribute("data-i18n-key");
     const translation = translations[key];
     element.innerText = translation;
+
+        changePlaceHolders();
 }
