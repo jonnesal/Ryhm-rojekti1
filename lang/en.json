@@ -1,4 +1,29 @@
 {
-  "title": "What To Watchss",
-  "description": "Need to register firstss?"
+  "title": "What To Watch",
+  "description": "Need to register firsts?",
+  "logIn": "Log in",
+  "register": "Register",
+  "registered?": "Already registered?",
+  "favorites": "Favorites",
+  "MainText": "How do you want to look for a movie to watch?",
+  "login": "Login",
+  "questions": "Questions",
+  "roulette": "Roulette",
+  "qustionTitle": "Make your selections and get something to watch!",
+  "quesMedia": "What type of media?",
+  "Movies": "Movies",
+  "Shows": "Shows",
+  "whatGenre": "What genre?",
+  "Action": "Action",
+  "Adventure": "Adventure",
+  "Animation": "Animation",
+  "Comedy": "Comedy",
+  "Drama": "Drama",
+  "Fantasy": "Fantasy",
+  "Horror": "Horror",
+  "Romance": "Romance",
+  "Thriller": "Thriller",
+  "Search": "Search",
+
+  "rouletteText": "Make your selections and spin the roulette!"
 }

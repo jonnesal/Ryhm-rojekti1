@@ -17,29 +17,30 @@
     <a href="main.html"><span id="home" class="material-symbols-rounded">home</span></a>
 
     <div class="language-picker">
-        <form action="" class="language-picker-form">  
-            <select name="language-picker-select" id="language-picker-select">
-                <option lang="en" value="english" selected>English</option>
-                <option lang="in" value="francais">Hindi</option>
+        <form action="" class="language-picker-form">
+            <select name="language-picker-select" id="language-picker-select" onchange="changeLang(this)">
+                <option lang="en" value="en" selected>English</option>
+                <option lang="in" value="hindi">Hindi</option>
             </select>
         </form>
     </div>
 
     <div class="box">
-        <h1>What To Watch</h1>
-            <form action="" method="POST">
-                <input type="email" id="username" name="username" class="input-field" placeholder="Username" spellcheck="false"/>
+
+        <h1 data-i18n-key="title" >What To Watch</h1>
+            <form action="" method="POST" >
+                <input type="email" id="username" name="username" class="input-field" translate-key1="placeholderUser" placeholder="Username" spellcheck="false"/>
                 <input type="password" id="password" name="password" class="input-field" placeholder="Password" spellcheck="false"/>
             </form>
-        <button type="submit" id="loginButton" class="btn"><span>Log in</span></button>
+        <button type="submit" id="loginButton" class="btn"><span data-i18n-key="logIn">Log in</span></button>
         <br>
         <br>
-        <a id="registeredquestion" href="register.html">Need to register first?</a>
+        <a id="registeredquestion" href="register.html" data-i18n-key="description" >Need to register first?</a>
     </div>    
 
 <footer>
 <p class="footertext">Design by Emsa<br>Powered by TMDB</p>
 </footer>
-<script defer src="../Js/login.js"></script>
+<script defer src="../Js/login.js"></script> <script src="../Js/translations.js"></script>
 </body>
 </html>

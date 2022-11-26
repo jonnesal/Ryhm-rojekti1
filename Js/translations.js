@@ -1,20 +1,46 @@
 
-//Trans
-
-// The locale our app first shows
-const defaultLocale = "hind";
-// The active locale
+let defaultLocale = "en";
 let locale;
-// Gets filled with active locale translations
 let translations = {};
-// When the page content is ready...
+let value;
+//Switch select koodi
+//Vaihtaa valittuun kieleen
+function  changeLang(selectedValue){
+
+    if(selectedValue === undefined) {
+        value = "en";
+    }else{
+        value = selectedValue.value;
+        localStorage.clear();
+        localStorage.setItem("lang" ,  value);
+        let test = localStorage.getItem("lang");
+
+        setLocale(value);
+    }
+
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    // Translate the page to the default locale
-    setLocale(defaultLocale);
-    bindLocaleSwitcher(defaultLocale);
+    // Käännetään sivu defaultLocale kieleen
+        let chosenLang = localStorage.getItem("lang");
+
+        selectElement('language-picker-select', chosenLang);
+
+        if(chosenLang === undefined) {
+            setLocale(defaultLocale);
+        }else{
+
+            setLocale(chosenLang);
+        }
+
 });
-// Load translations for the given locale and translate
-// the page to this locale
+
+function selectElement(id, valueToSelect) {
+    let element = document.getElementById(id);
+    element.value = valueToSelect;
+}
+// Lataa locale kielen ja laittaa sivun tähän kieleen.
+
 async function setLocale(newLocale) {
     if (newLocale === locale) return;
     const newTranslations =
@@ -23,40 +49,28 @@ async function setLocale(newLocale) {
     translations = newTranslations;
     translatePage();
 }
-// Retrieve translations JSON object for the given
-// locale over the network
+
+// Haetaan käännökset json tiedostosta
+
 async function fetchTranslationsFor(newLocale) {
     const response = await fetch(`/lang/${newLocale}.json`);
     return await response.json();
 }
-// Replace the inner text of each element that has a
-// data-i18n-key attribute with the translation corresponding
-// to its data-i18n-key
+
+// Käännetään kaikki kohdat missä tämä Key on
+
 function translatePage() {
     document
         .querySelectorAll("[data-i18n-key]")
         .forEach(translateElement);
 }
+
 // Replace the inner text of the given HTML element
 // with the translation in the active locale,
-// corresponding to the element's data-i18n-key
+// Vaihdetaan html elementin kieli aktiiviseen locale arvoon
+
 function translateElement(element) {
     const key = element.getAttribute("data-i18n-key");
     const translation = translations[key];
     element.innerText = translation;
-}
-
-// ...
-// Whenever the user selects a new locale, we
-// load the locale's translations and update
-// the page
-function bindLocaleSwitcher(initialValue) {
-
-    const switcher =
-        document.querySelector("[data-i18n-switcher]");
-    switcher.value = initialValue;
-    switcher.onchange = (e) => {
-        // Set the locale to the selected option[value]
-        setLocale(e.target.value);
-    };
 }
