@@ -21,7 +21,9 @@ const printResults = (results) => {
 
         const cover = document.createElement("img");
         cover.src = "https://image.tmdb.org/t/p/original/" + results.results[i].poster_path
+        cover.setAttribute("id", "cover");
         const title = document.createElement("p");
+        title.setAttribute("id", "title");
         const description = document.createElement("p");
 
         //Elokuva    Elokuvassa ja sarjassa pitää hakea eri nimisistä tauluista tietoa tässä se katsoo kumpi on sivulla valittu
@@ -45,7 +47,8 @@ const printResults = (results) => {
 
         //favorite button
         const favorite = document.createElement("button");
-        favorite.innerText = "favorite";
+        favorite.setAttribute("id", "favorite");
+        favorite.innerText = "Favorite";
 
         //tallenetaan kyseisen favoriten tiedot
         favorite.addEventListener("click", () => {

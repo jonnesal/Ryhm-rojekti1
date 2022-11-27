@@ -21,7 +21,46 @@ body {
     max-height: 100vh;
     overflow: hidden;
     overflow-x: hidden;
-    -ms-overflow-style: none;    
+    -ms-overflow-style: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+}
+
+#home {
+    font-size: 60px;
+    color: var(--white);
+    position: absolute;
+    top: 6%;
+    left: 3%;
+    transform: translate(-50%, -50%);
+}
+
+.navbar {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: calc(15.6px + (60 - 15.6) * ((100vw - 500px) / (1920 - 500)));
+}
+
+.navitems {
+    margin-left: calc(7.8px + (30 - 7.8) * ((100vw - 500px) / (1920 - 500)));
+    margin-right: calc(7.8px + (30 - 7.8) * ((100vw - 500px) / (1920 - 500)));
+    color: var(--white);
+    font-weight: 400;
+    font-size: calc(6.51px + (25 - 6.51) * ((100vw - 500px) / (1920 - 500)));
+    text-decoration: none;
+}
+
+.language-picker {
+    position: absolute;
+    top: 6%;
+    left: 67%;
+    transform: translate(-50%, -50%);
 }
 
 .bigtext {
@@ -31,6 +70,8 @@ body {
     top: 8.5%;
     left: 50%;
     transform: translate(-50%, -50%);
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .midtext {
@@ -61,7 +102,7 @@ body {
 .midroulette {
     display: flex;
     align-items: center;
-    margin-right: calc(12.75px + (76 - 12.75) * ((100vw - 500px) / (1920 - 500)));
+    margin-right: calc(5.98px + (23 - 5.98) * ((100vw - 500px) / (1920 - 500)));
     gap: calc(31.2px + (120 - 31.2) * ((100vw - 500px) / (1920 - 500)));
 }
 
@@ -78,14 +119,37 @@ body {
 }
 
 .imageplaceholder {
+    position: relative;
     background-color: var(--lighterbackground);
     height: calc(123.42px + (474 - 123.42) * ((100vw - 500px) / (1920 - 500)));
-    aspect-ratio: 9/16;
+    aspect-ratio: 2/3;
 }
 
-.poster {
+#title {
+    font-size: 30px;
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    color: var(--white);
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#favorite {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+#cover {
+    display: flex;
+    align-items: center;
     height: calc(123.42px + (474 - 123.42) * ((100vw - 500px) / (1920 - 500)));
-    aspect-ratio: 9/16;
 }
 
 .buttons {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fi">
+<html lang="en">
 
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,24 +12,34 @@
 </head>
 
 <body>
-    <div>
-        <div> <a href="favorites.html">Favorites</a> </div>
-        <div> <a href="login.html">login</a> </div>
-        <div> <a href="register.html">register</a> </div>
-        <div id="username"></div>
-    </div>
-    <p class="bigtext">How do you want to look for a movie to watch?</p>
 
+    <div class="navbar">
+        <span><a class="navitems" href="favorites.html" data-i18n-key="favorites">Favorites</a></span>
+        <span><a class="navitems" href="login.html" data-i18n-key="login">Login</a></span>
+        <span><a class="navitems" href="register.html"data-i18n-key="register">Register</a></span>
+        <span><div id="username"></div></span>
+    </div>
+
+    <div class="language-picker">
+        <form action="" class="language-picker-form">
+            <select name="language-picker-select" id="language-picker-select" onchange="changeLang(this)">
+                <option lang="en" value="en" selected>English</option>
+                <option lang="in" value="hindi">Hindi</option>
+            </select>
+        </form>
+    </div>
+
+    <p class="bigtext" data-i18n-key="MainText">How do you want to look for a movie to watch?</p>
 
     <div class="midmain">
-        <span><a class="selection" id="left" href="questions.html">Questions</a></span>
+        <span><a class="selection" id="left" href="questions.html" data-i18n-key="questions">Questions</a></span>
         <hr class="separator" id="main_separator">
-        <span><a class="selection" id="right" href="roulette.html">Roulette</a></span>
+        <span><a class="selection" id="right" href="roulette.html"data-i18n-key="roulette">Roulette</a></span>
     </div>
 
-    <footer>
-        <p class="footertext">Design by Emsa<br>Powered by TMDB</p>
-    </footer>
+<footer>
+<p class="footertext">Design by Emsa<br>Powered by TMDB</p>
+</footer>
+    <script src="../Js/translations.js"></script>
 </body>
-
 </html>
