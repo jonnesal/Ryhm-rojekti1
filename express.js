@@ -8,6 +8,9 @@ const cors = require('cors');
 const app = express();
 
 
+let loggedIn = false;
+let currentUser;
+
 app.use(cors({
     origin: '*'
 }));
@@ -109,30 +112,57 @@ app.post('/api/login', function (req, res) {
     let response = "false";
     let sql = "SELECT * FROM users WHERE user_name = ? AND user_pass = ?";
 
+    let username = req.body.username;
+    let password = req.body.password;
 
     query(sql, [req.body.username, req.body.password], function (err, results) {
         if (results.length > 0) {
-            console.log("if toimii");
+
+            loggedIn = true;
+            console.log("expressjs loggedIn: " + loggedIn);
+
+            checkCurrentUser(username, password);
+
             response = "true";
         } else {
-            console.log("if ei toimi");
+
+            loggedIn = false;
+            console.log("expressjs loggedIn: " + loggedIn);
         }
         res.send(response);
     });
 
-
+    
 
 })
 
+app.get('/api/getCurrentUser', function (req, res) {
+
+    let sql = "SELECT user_id FROM users WHERE user_name = ? AND user_pass = ?";
+
+    query(sql, [req.body.username, req.body.password], function (err, results) {
+
+    })
+    console.log("currentUser: " + currentUser);
+});
 
 
+function checkCurrentUser(username, password) {
 
+    let sql = "SELECT user_id FROM users WHERE user_name = ? AND user_pass = ?";
+
+    query(sql, [username, password], function (err, results) {
+        currentUser = results[0].user_id;
+        console.log(currentUser);
+        
+    })
+    
+}
 
 
 
 searchRouter.get('/api/favorites', function (req, res) {
-    let sql = "SELECT *" +
-        " FROM favorite";
+    let sql = "SELECT * FROM favorite";
 
     (async function () {
         try {
@@ -151,18 +181,104 @@ searchRouter.post('/api/favorites', function (req, res) {
 
     (async function () {
         try {
-            let result = await query(sql, [req.body.name, req.body.rating, req.body.dateAdded,
-                req.body.posterPath, req.body.userId
-            ]);
-            if (result.affectedRows != 0) {
-                response = true;
+            if (loggedIn) {
+                console.log("loggedIn on true");
+
+                let result = await query(sql, [req.body.name, req.body.rating, req.body.dateAdded,
+                    req.body.posterPath, currentUser
+                ]);
+                if (result.affectedRows != 0) {
+                    response = true;
+                }
+
+            } else {
+                console.log("loggedIn on false");
             }
+
+
         } catch (err) {
             console.log("Database error. " + err);
         }
         res.send(response);
     })()
 })
+
+// ?????????????????????????????????????
+searchRouter.get('/api/getFavorites', function (req, res) {
+    let sql = "SELECT * FROM favorite WHERE user_ID = ? ";
+
+    (async function () {
+        try {
+            const rows = await query(sql, [currentUser]);
+            connection.query(sql);
+            console.log(rows);
+            console.log(typeof (rows));
+            res.send(rows);
+        } catch (err) {
+            console.log("Database error. " + err);
+        }
+    })()
+})
+
+
+
+searchRouter.get('/api/getFavorites2', function (req, res) {
+    let sql = "SELECT * FROM favorite WHERE user_ID = ?";
+
+    (async function () {
+        try {
+            console.log("---------------- getFav userID: " + currentUser);
+            const rows = await query(sql, [currentUser]);
+            connection.query(sql);
+            console.log(rows);
+            console.log(typeof (rows));
+            res.send(rows);
+        } catch (err) {
+            console.log("Database error. " + err);
+        }
+    })()
+})
+
+function executeQuery(sql, cb) {
+
+    connection.query(sql, function (error, result, fields) {
+        if (error) {
+            throw error;
+        }
+        cb(result);
+    })
+}
+
+
+
+function fetchData(response) {
+
+    executeQuery("SELECT * FROM favorite", function (result) {
+        console.log(result);
+        response.write('<table><tr>');
+
+        for (let column in result[0]) {
+            response.write('<td><label>' + column + '</label></td>');
+            response.write('</tr>');
+        }
+        for (let row in result) {
+            response.write('<tr>');
+            for (let column in result[row]) {
+                response.write('<td><label>' + result[row][column] + '</label></td>');
+            }
+            response.write('</tr>');
+        }
+        response.end('</table>');
+    });
+
+}
+
+// ------------------------------------------------------------------
+
+
+
+
+
 
 
 const server = app.listen(PORT, function () {
