@@ -5,7 +5,11 @@ describe("Movies/series favorites", () => {
         expect(response).toBe('true')
 
 
+    })
 
+    it("Movie/series should be able to be removed in to the database", () => {
+        let response = deleteFromDatabase("testi");
+        expect(response).toBe('true')
 
     })
 
