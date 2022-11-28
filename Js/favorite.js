@@ -32,8 +32,8 @@ function putToFavorite(entertainmentName, rate, poster) {
     xhr.send(eventString);
     return xhr.responseText;
 
-}
 
+}
 
 
 
@@ -50,6 +50,7 @@ function deleteFromDatabase(name) {
     xhr.onload = function() {
         console.log(xhr.responseText);
     }
+
 
 
     let eventString = JSON.stringify(data);
