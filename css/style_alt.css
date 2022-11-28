@@ -44,6 +44,13 @@ body, button {
     transform: translate(-50%, -50%);
 }
 
+.language-picker {
+    position: absolute;
+    top: 6%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+}
+
 h1 {
     font-size: calc(7.8px + (30 - 7.8) * ((100vw - 500px) / (1920 - 500)));
     color: var(--white);

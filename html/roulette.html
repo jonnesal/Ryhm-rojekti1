@@ -14,13 +14,22 @@
 <body>
 
     <div class="navbar">
-        <span><a class="navitems" href="favorites.html">Favorites</a></span>
-        <span><a class="navitems" href="login.html">Login</a></span>
-        <span><a class="navitems" href="register.html">Register</a></span>
+        <span><a class="navitems" href="favorites.html" data-i18n-key="favorites">Favorites</a></span>
+        <span><a class="navitems" href="login.html" data-i18n-key="login">Login</a></span>
+        <span><a class="navitems" href="register.html"data-i18n-key="register">Register</a></span>
         <span><div id="username"></div></span>
     </div>
 
-    <p class="bigtext">Make your selections and spin the roulette!</p>
+    <div class="language-picker">
+        <form action="" class="language-picker-form">
+            <select name="language-picker-select" id="language-picker-select" onchange="changeLang(this)">
+                <option lang="en" value="en" selected>English</option>
+                <option lang="in" value="hindi">Hindi</option>
+            </select>
+        </form>
+    </div>
+
+    <p class="bigtext" data-i18n-key="rouletteText">Make your selections and spin the roulette!</p>
 
     <div class="midroulette">
 
@@ -28,13 +37,13 @@
 
             <div class="button" id="roulette">
                 <label>
-                    <input type="radio" name="roulette" id="moviesRadio" value="1"><span>Movies</span>
+                    <input type="radio" name="roulette" id="moviesRadio" value="1"><span data-i18n-key="Movies">Movies</span>
                 </label>
             </div>
 
             <div class="button" id="roulette">
                 <label>
-                    <input type="radio" name="roulette" id="showsRadio" value="2"><span>Shows</span>
+                    <input type="radio" name="roulette" id="showsRadio" value="2"><span data-i18n-key="Shows">Shows</span>
                 </label>
             </div>
 
@@ -49,7 +58,7 @@
 
     <button class="search" id="roulette_search">
         <label>
-            <span>Search</span>
+            <span data-i18n-key="Search">Search</span>
         </label>
     </button>
 
@@ -59,5 +68,6 @@
 <script defer src="../Js/favorite.js"></script>
 <script defer src="../Js/printResults.js"></script>
 <script defer src="../Js/random.js"></script>
+<script src="../Js/translations.js"></script>
 </body>
 </html>

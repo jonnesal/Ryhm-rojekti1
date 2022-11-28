@@ -14,28 +14,37 @@
 <body>
 
     <div class="navbar">
-        <span><a class="navitems" href="favorites.html">Favorites</a></span>
-        <span><a class="navitems" href="login.html">Login</a></span>
-        <span><a class="navitems" href="register.html">Register</a></span>
+        <span><a class="navitems" href="favorites.html" data-i18n-key="favorites">Favorites</a></span>
+        <span><a class="navitems" href="login.html" data-i18n-key="login">Login</a></span>
+        <span><a class="navitems" href="register.html"data-i18n-key="register">Register</a></span>
         <span><div id="username"></div></span>
     </div>
 
-    <p class="bigtext">Make your selections and get something to watch!</p>
+    <div class="language-picker">
+        <form action="" class="language-picker-form">
+            <select name="language-picker-select" id="language-picker-select" onchange="changeLang(this)">
+                <option lang="en" value="en" selected>English</option>
+                <option lang="in" value="hindi">Hindi</option>
+            </select>
+        </form>
+    </div>
+
+    <p class="bigtext" data-i18n-key="qustionTitle">Make your selections and get something to watch!</p>
 
     <div class="midquestions">
         <div class="question_div">            
-            <div class="midtext">Type</div>
+            <div class="midtext" data-i18n-key="quesMedia">What type of media?</div>
             <div class="buttons">
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="type" value="1"><span>Movies</span>
+                        <input type="radio" name="type" value="1"><span data-i18n-key="Movies">Movies</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="type" value="1"><span>Shows</span>
+                        <input type="radio" name="type" value="1"><span data-i18n-key="Shows">Shows</span>
                     </label>
                 </div>
 
@@ -43,60 +52,60 @@
         </div>
 
         <div class="question_div">
-            <div class="midtext">Genre</div>
+            <div class="midtext"data-i18n-key="whatGenre">What genre?</div>
             <div class="buttons">
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span>Action</span>
+                        <input type="radio" name="genre" value="1"><span data-i18n-key="Action">Action</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span>Adventure</span>
+                        <input type="radio" name="genre" value="1"><span data-i18n-key="Adventure">Adventure</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span>Animation</span>
+                        <input type="radio" name="genre" value="1"><span data-i18n-key="Animation">Animation</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span>Comedy</span>
+                        <input type="radio" name="genre" value="1"><span data-i18n-key="Comedy">Comedy</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span>Drama</span>
+                        <input type="radio" name="genre" value="1"><span data-i18n-key="Drama">Drama</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span>Fantasy</span>
+                        <input type="radio" name="genre" value="1"><span data-i18n-key="Fantasy">Fantasy</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span>Horror</span>
+                        <input type="radio" name="genre" value="1"><span data-i18n-key="Horror">Horror</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span>Romance</span>
+                        <input type="radio" name="genre" value="1"><span data-i18n-key="Romance">Romance</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span>Thriller</span>
+                        <input type="radio" name="genre" value="1"><span data-i18n-key="Thriller">Thriller</span>
                     </label>
                 </div>
 
@@ -107,12 +116,13 @@
 
     <button class="search" id="questions_search">
         <label>
-            <span>Search</span>
+            <span data-i18n-key="Search">Search</span>
         </label>
     </button>
 
 <footer>
 <p class="footertext">Design by Emsa<br>Powered by TMDB</p>
 </footer>
+    <script src="../Js/translations.js"></script>
 </body>
 </html>
