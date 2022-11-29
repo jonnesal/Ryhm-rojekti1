@@ -72,9 +72,45 @@ async function setLocale(newLocale) {
 // Haetaan käännökset json tiedostosta
 
 async function fetchTranslationsFor(newLocale) {
-    const response = await fetch(`/lang/${newLocale}.json`);
+    const response = await fetch(`../lang/${newLocale}.json`, {
+        mode: "no-cors"
+    });
     return await response.json();
 }
+
+// async function fetchTranslationsFor(newLocale) {
+//     const fetch = (...args) =>
+//         import ('node-fetch').then(({default: fetch}) => fetch(...args));
+
+//     const url =
+//     `./lang/${newLocale}.json`;
+
+//     const options = {
+//         method: 'GET',
+//         headers: {
+//             //Tätä ei tarvii mutta paska hajoo jos tän poistaa, muokkaan joskus
+//             'Content-Type': `/lang/${newLocale}.json`
+//         }
+//     };
+
+//     fetch(url, options)
+//         .then(res => res.json())
+//         .catch(err => console.error('error:' + err));
+//     try {
+//         let response = await fetch(url, options);
+
+//         response = await response.json();
+
+//         return response;
+
+
+//     } catch (err) {
+//         console.log(err);
+
+//     }
+// }
+
+
 
 // Käännetään kaikki kohdat missä tämä Key on
 

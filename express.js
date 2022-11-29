@@ -75,7 +75,7 @@ app.get("/style", (req, res) => {
 
 
 
-
+// Get all from users
 app.get('/api/register', (req, res) => {
     let sql = "SELECT * FROM users";
 
@@ -89,7 +89,7 @@ app.get('/api/register', (req, res) => {
     })()
 });
 
-
+// Insert a new user to the database
 app.post('/api/register', function(req, res) {
     let response = false;
     let sql = "INSERT INTO users (first_name, last_name, user_name, user_pass)" +
@@ -105,9 +105,9 @@ app.post('/api/register', function(req, res) {
         }
         res.send(response);
     })()
-})
+});
 
-
+// Get all from specific user based on user_name and user_password
 app.post('/api/login', function(req, res) {
     let response = "false";
     let sql = "SELECT * FROM users WHERE user_name = ? AND user_pass = ?";
@@ -132,38 +132,34 @@ app.post('/api/login', function(req, res) {
         res.send(response);
     });
 
-    
+});
 
-})
 
+// Get the user_id from user based on name and password
 app.get('/api/getCurrentUser', function (req, res) {
 
     let sql = "SELECT user_id FROM users WHERE user_name = ? AND user_pass = ?";
 
     query(sql, [req.body.username, req.body.password], function (err, results) {
 
-    })
+    });
     console.log("currentUser: " + currentUser);
 });
 
-
+// Check the user_id from the current user and paste it to currentUser
 function checkCurrentUser(username, password) {
-
     let sql = "SELECT user_id FROM users WHERE user_name = ? AND user_pass = ?";
 
     query(sql, [username, password], function (err, results) {
         currentUser = results[0].user_id;
-        console.log(typeof currentUser);
-
-        console.log(currentUser);
-        
-    })
+        console.log("Current user ID: " +currentUser);     
+    });
     
 }
 
 
 
-
+// Get all from favorites
 searchRouter.get('/api/favorites', function (req, res) {
     let sql = "SELECT * FROM favorite";
 
@@ -176,8 +172,10 @@ searchRouter.get('/api/favorites', function (req, res) {
             console.log("Database error. " + err);
         }
     })()
-})
+});
 
+
+// Insert a movie/series in the favorites for the current user
 searchRouter.post('/api/favorites', function(req, res) {
     let response = false;
     let sql = "INSERT INTO favorite (name, rating, date, imageURL, user_id)" +
@@ -205,86 +203,44 @@ searchRouter.post('/api/favorites', function(req, res) {
         }
         res.send(response);
     })()
-})
+});
 
-// ?????????????????????????????????????
-searchRouter.get('/api/getFavorites', function (req, res) {
+//  Get all favorites from current user
+searchRouter.get('/api/getFavoritesFromCurrentUser', function (req, res) {
     let sql = "SELECT * FROM favorite WHERE user_id = " + currentUser;
 
     (async function () {
         try {
             const rows = await query(sql);
-            connection.query(sql);
-            console.log(rows);
-            console.log(typeof (rows));
+            console.log("favorite rows length: " + rows.length);
             res.send(rows);
         } catch (err) {
             console.log("Database error. " + err);
         }
     })()
-})
+});
 
 
-
-searchRouter.get('/api/getFavorites2', function (req, res) {
-    let sql = "SELECT * FROM favorite WHERE user_id = ?";
+// Count how many movies/series current user has in favorites
+searchRouter.get('/api/CountFavorites', function (req, res) {
+    let sql = "SELECT * FROM favorite WHERE user_id = " + currentUser;
 
     (async function () {
         try {
-            console.log("---------------- getFav userID: " + currentUser);
-            const rows = await query(sql, [currentUser]);
-            connection.query(sql);
-            console.log(rows);
-            console.log(typeof (rows));
-            res.send(rows);
+            const rows = await query(sql);
+            const rowCount = rows.length;
+            console.log("row Count: " + rowCount);
+            res.send( {rowCount : rowCount });
         } catch (err) {
             console.log("Database error. " + err);
         }
     })()
-})
-
-function executeQuery(sql, cb) {
-
-    connection.query(sql, function (error, result, fields) {
-        if (error) {
-            throw error;
-        }
-        cb(result);
-    })
-}
-
-
-
-function fetchData(response) {
-
-    executeQuery("SELECT * FROM favorite", function (result) {
-        console.log(result);
-        response.write('<table><tr>');
-
-        for (let column in result[0]) {
-            response.write('<td><label>' + column + '</label></td>');
-            response.write('</tr>');
-        }
-        for (let row in result) {
-            response.write('<tr>');
-            for (let column in result[row]) {
-                response.write('<td><label>' + result[row][column] + '</label></td>');
-            }
-            response.write('</tr>');
-        }
-        response.end('</table>');
-    });
-
-}
-
-// ------------------------------------------------------------------
+});
 
 
 
 
-
-
-
+// delete movie/series from favorites based on the name
 app.delete('/api/favorites', function(req, res) {
     let response = false;
     let sql = "DELETE FROM Favorite" +
@@ -301,12 +257,12 @@ app.delete('/api/favorites', function(req, res) {
         }
         res.send(response);
     })()
-})
+});
 
-
+// server port: 8080
 const server = app.listen(PORT, function() {
     const host = server.address().address;
     const port = server.address().port;
 
     console.log("Mose express listening at http://localhost:%s", port);
-})
+});

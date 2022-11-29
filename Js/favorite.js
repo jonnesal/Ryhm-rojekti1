@@ -3,12 +3,17 @@ const results = JSON.parse(localStorage.getItem("Results"));
 
 const favButton = document.querySelector("#favorites_search");
 
+let favCount = 1;           // how many favorites current user has
 
 
 
+function loadFavorites() {
+    console.log("meni load ");
+    getFavoritesCount();
+    getFavorites();
+}
 
 function putToFavorite(entertainmentName, rate, poster) {
-
 
     let Name = entertainmentName;
     let Rating = rate
@@ -21,7 +26,6 @@ function putToFavorite(entertainmentName, rate, poster) {
         "rating": Rating,
         "dateAdded": dateAdded,
         "posterPath": posterPath,
-        "userId": 1
     }
 
     let xhr = new XMLHttpRequest();
@@ -42,102 +46,86 @@ function putToFavorite(entertainmentName, rate, poster) {
 
 
 
-
-}
-
-let testi;
-
+// Get all favorites from current user
 function getFavorites() {
 
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8080/api/getFavorites");
+    xhr.open("GET", "http://localhost:8080/api/getFavoritesFromCurrentUser");
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onload = function () {
         if (xhr.readyState === xhr.DONE) {
             if (xhr.status === 200) {
 
-                let testi = xhr.response;
-                let testi2 = JSON.stringify(testi);
-                let testi3 = this.responseText;
-                console.log("------ testi----------" + testi);
-                console.log("------ testi2----------" + testi2);
-                console.log("------ testi3----------" + testi3);
-                console.log("------ response----------" + xhr.responseText);
+                let response = xhr.response;
+                let parsedResponse = JSON.parse(response);
 
-                printResults2(testi);
-                
-               
-
+                printResults2(parsedResponse);
             }
         }
     }
+    xhr.send();
+}
 
+// Get favorite count from current user
+function getFavoritesCount() {
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:8080/api/CountFavorites");
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onload = function () {
+        if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200) {
+
+                let response = xhr.response;
+                let jsonResponse = JSON.stringify(response);
+                let parsedResponse = JSON.parse(response);
+                let parsedResponse2 = JSON.parse(jsonResponse);
+
+                favCount = parsedResponse.rowCount;
+                console.log("favCount: " + favCount);
+                
+                
+            }
+        }
+    }
     xhr.send();
 }
 
 
-
-
-
-
-
-favButton.addEventListener("click", () => {
-    console.log("nappi ");
-    getFavorites();
-});
-
-
-
-
-
-
-
-
-
-
-
 // -------------- Print favorites to page --------------------------
+const printResults2 = (result) => {
 
-const favResultsDiv = document.querySelector("#favResults");
-
-let searchAmount2 = 1;
-let entertainmentName2;
-
-const printResults2 = (results) => {
-
-    let moro = JSON.parse(results);
-
+    const favResultsDiv = document.querySelector("#favResults");
+    
+    let searchAmount =  favCount;
+    console.log("searchAmount: " + searchAmount);
     favResultsDiv.innerHTML = ``;
 
-    for (let i = 0; i < searchAmount2; i++) {
 
-        const entertainment = document.createElement("a");
-        entertainment.href = "../html/searchDetails.html";
-        entertainment.className = "entertainment";
+    for (let i = 0; i < searchAmount; i++) {
 
+        const container = document.createElement("div");
+        container.setAttribute("id", "container");
+
+
+        const cover = document.createElement("img");
+        cover.src = "https://image.tmdb.org/t/p/original/" + result[i].imageURL;
+        cover.setAttribute("class", "cover");
+        cover.style = "width:100%";
 
         const title = document.createElement("p");
-        title.setAttribute("id", "title");
+        title.setAttribute("class", "title");
+        title.innerText = result[i].name;
 
-        // toimii
-       // title.innerText = results;
 
-        title.innerText = moro[i].name;
-        
-
-        //title.innerText = results.results[i].name;
-
-        // results.results[i].original_title
-
-        // title.innerText = results.results[i];
-
-        favResultsDiv.appendChild(title);
-        favResultsDiv.appendChild(entertainment);
-
-        
+        favResultsDiv.appendChild(container);
+        container.appendChild(title);
+        container.appendChild(cover);
 
     }
+}
 
 
 //Poistamistoiminto testauksia varten
@@ -150,7 +138,7 @@ function deleteFromDatabase(name) {
     xhr.open("DELETE", "http://localhost:8080/api/favorites", false);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onload = function() {
+    xhr.onload = function () {
         console.log(xhr.responseText);
     }
 
