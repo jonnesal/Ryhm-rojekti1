@@ -25,15 +25,23 @@ function putToFavorite(entertainmentName, rate, poster) {
     }
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/api/favorites");
+    xhr.open("POST", "http://localhost:8080/api/favorites", false);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onload = function () {
         console.log(xhr.responseText);
+
     }
     console.log(data);
     let eventString = JSON.stringify(data);
     xhr.send(eventString);
+    return xhr.responseText;
+
+
+}
+
+
+
 
 }
 
@@ -130,5 +138,26 @@ const printResults2 = (results) => {
         
 
     }
+
+
+//Poistamistoiminto testauksia varten
+function deleteFromDatabase(name) {
+
+    const data = {
+        "name": name
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.open("DELETE", "http://localhost:8080/api/favorites", false);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onload = function() {
+        console.log(xhr.responseText);
+    }
+
+
+
+    let eventString = JSON.stringify(data);
+    xhr.send(eventString);
+    return xhr.responseText;
 
 }
