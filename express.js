@@ -153,6 +153,8 @@ function checkCurrentUser(username, password) {
 
     query(sql, [username, password], function (err, results) {
         currentUser = results[0].user_id;
+        console.log(typeof currentUser);
+
         console.log(currentUser);
         
     })
@@ -205,11 +207,11 @@ searchRouter.post('/api/favorites', function (req, res) {
 
 // ?????????????????????????????????????
 searchRouter.get('/api/getFavorites', function (req, res) {
-    let sql = "SELECT * FROM favorite WHERE user_ID = ? ";
+    let sql = "SELECT * FROM favorite WHERE user_id = " + currentUser;
 
     (async function () {
         try {
-            const rows = await query(sql, [currentUser]);
+            const rows = await query(sql);
             connection.query(sql);
             console.log(rows);
             console.log(typeof (rows));
@@ -223,7 +225,7 @@ searchRouter.get('/api/getFavorites', function (req, res) {
 
 
 searchRouter.get('/api/getFavorites2', function (req, res) {
-    let sql = "SELECT * FROM favorite WHERE user_ID = ?";
+    let sql = "SELECT * FROM favorite WHERE user_id = ?";
 
     (async function () {
         try {

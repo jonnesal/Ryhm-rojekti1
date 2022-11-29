@@ -98,6 +98,8 @@ let entertainmentName2;
 
 const printResults2 = (results) => {
 
+    let moro = JSON.parse(results);
+
     favResultsDiv.innerHTML = ``;
 
     for (let i = 0; i < searchAmount2; i++) {
@@ -111,24 +113,21 @@ const printResults2 = (results) => {
         title.setAttribute("id", "title");
 
         // toimii
-        title.innerText = results;
+       // title.innerText = results;
 
-        //title.innerText = results[i];
+        title.innerText = moro[i].name;
+        
 
         //title.innerText = results.results[i].name;
 
         // results.results[i].original_title
 
-        // results.results[i].name;
+        // title.innerText = results.results[i];
 
         favResultsDiv.appendChild(title);
         favResultsDiv.appendChild(entertainment);
 
-        //tallenetaan tiedot jotta niitä voidaan käyttää searchDetails
-        entertainment.addEventListener("click", () => {
-            localStorage.setItem("Results", JSON.stringify(results));
-            localStorage.setItem("Position", i);
-        })
+        
 
     }
 
