@@ -1,10 +1,11 @@
 const resultsDiv = document.querySelector("#results");
 let searchAmount;
 let entertainmentName;
+let typeValue;
 
-
-const searchUrl = (url, Amount) => {
+const searchUrl = (url, Amount, type) => {
     searchAmount = Amount;
+    typeValue = type;
     fetch(url)
         .then(response => response.json())
         .then(results => printResults(results))
@@ -13,13 +14,16 @@ const searchUrl = (url, Amount) => {
 
 const printResults = (results) => {
     resultsDiv.innerHTML = ``;
+    console.log("test1");
 
     for (let i = 0; i < searchAmount; i++) {
+        const entertainmentdiv = document.createElement("div");
         const entertainment = document.createElement("a");
         entertainment.href = "../html/searchDetails.html";
         entertainment.className = "entertainment";
 
         const cover = document.createElement("img");
+        entertainmentdiv.setAttribute("id", "entertainmentDiv");
         cover.src = "https://image.tmdb.org/t/p/original/" + results.results[i].poster_path
         cover.setAttribute("id", "cover");
         const title = document.createElement("p");
@@ -28,7 +32,7 @@ const printResults = (results) => {
 
         //Elokuva    Elokuvassa ja sarjassa pitää hakea eri nimisistä tauluista tietoa tässä se katsoo kumpi on sivulla valittu
         //ja hakee sen perusteella
-        if (document.querySelector('input[name="roulette"]:checked').value == 1) {
+        if (typeValue == 1) {
             title.innerText = results.results[i].original_title;
             cover.alt = "Cover of " + results.results[i].original_title;
             entertainmentName = results.results[i].original_title;
@@ -57,11 +61,12 @@ const printResults = (results) => {
             putToFavorite(entertainmentName, rating, posterPath);
         });
 
-        resultsDiv.appendChild(entertainment);
+        resultsDiv.appendChild(entertainmentdiv);
+        entertainmentdiv.appendChild(entertainment);
         entertainment.appendChild(cover);
         entertainment.appendChild(title);
         //resultsDiv.appendChild(description);
-        resultsDiv.appendChild(favorite);
+        entertainmentdiv.appendChild(favorite);
 
 
         //tallenetaan tiedot jotta niitä voidaan käyttää searchDetails
