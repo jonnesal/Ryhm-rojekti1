@@ -1,6 +1,7 @@
 const randomizeButton = document.querySelector("#roulette_search");
 let score;
 let url;
+let type;
 searchAmount = 1;
 
 
@@ -35,7 +36,7 @@ randomizeButton.addEventListener("click", () => {
 function generate() {
 
     let url = randomize();
-    searchUrl(url, searchAmount);
+    searchUrl(url, searchAmount, type);
 
 }
 
@@ -51,10 +52,12 @@ function randomize() {
     let value = document.querySelector('input[name="roulette"]:checked').value;
 
     if (value == 1) {
-        url = `https://api.themoviedb.org/3/discover/movie?api_key=ffbef3b4a61b4f7178a8fe83e0ad8b9d&page=${page}&vote_average.gte=${score}`;
+        url = `https://api.themoviedb.org/3/discover/movie?api_key=ffbef3b4a61b4f7178a8fe83e0ad8b9d&page=${page}&vote_average.gte=${score}&include_adult=true`;
+        type = value;
         return url;
     } else {
-        url = `https://api.themoviedb.org/3/discover/tv?api_key=ffbef3b4a61b4f7178a8fe83e0ad8b9d&page=${page}&vote_average.gte=${score}`;
+        url = `https://api.themoviedb.org/3/discover/tv?api_key=ffbef3b4a61b4f7178a8fe83e0ad8b9d&page=${page}&vote_average.gte=${score}&include_adult=true`;
+        type = value;
         return url;
     }
 

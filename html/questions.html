@@ -32,7 +32,9 @@
     <p class="bigtext" data-i18n-key="qustionTitle">Make your selections and get something to watch!</p>
 
     <div class="midquestions">
-        <div class="question_div">            
+        <div class="question_div">
+            <p style="color:white">Movie/series name:</p>
+            <input type="text" id="entertainmentId" name="entertainmentName"></input>
             <div class="midtext" data-i18n-key="quesMedia">What type of media?</div>
             <div class="buttons">
 
@@ -44,7 +46,7 @@
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="type" value="1"><span data-i18n-key="Shows">Shows</span>
+                        <input type="radio" name="type" value="2"><span data-i18n-key="Shows">Shows</span>
                     </label>
                 </div>
 
@@ -52,7 +54,7 @@
         </div>
 
         <div class="question_div">
-            <div class="midtext"data-i18n-key="whatGenre">What genre?</div>
+            <div class="midtext" data-i18n-key="whatGenre">What genre?</div>
             <div class="buttons">
 
                 <div class="button" id="question_button">
@@ -63,49 +65,49 @@
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span data-i18n-key="Adventure">Adventure</span>
+                        <input type="radio" name="genre" value="2"><span data-i18n-key="Adventure">Adventure</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span data-i18n-key="Animation">Animation</span>
+                        <input type="radio" name="genre" value="3"><span data-i18n-key="Animation">Animation</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span data-i18n-key="Comedy">Comedy</span>
+                        <input type="radio" name="genre" value="4"><span data-i18n-key="Comedy">Comedy</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span data-i18n-key="Drama">Drama</span>
+                        <input type="radio" name="genre" value="5"><span data-i18n-key="Drama">Drama</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span data-i18n-key="Fantasy">Fantasy</span>
+                        <input type="radio" name="genre" value="6"><span data-i18n-key="Fantasy">Fantasy</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span data-i18n-key="Horror">Horror</span>
+                        <input type="radio" name="genre" value="7"><span data-i18n-key="Horror">Horror</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span data-i18n-key="Romance">Romance</span>
+                        <input type="radio" name="genre" value="8"><span data-i18n-key="Romance">Romance</span>
                     </label>
                 </div>
 
                 <div class="button" id="question_button">
                     <label>
-                        <input type="radio" name="genre" value="1"><span data-i18n-key="Thriller">Thriller</span>
+                        <input type="radio" name="genre" value="9"><span data-i18n-key="Thriller">Thriller</span>
                     </label>
                 </div>
 
@@ -120,9 +122,16 @@
         </label>
     </button>
 
-<footer>
-<p class="footertext">Design by Emsa<br>Powered by TMDB</p>
-</footer>
+    <div id="results">
+    </div>
+
+    <footer>
+        <p class="footertext">Design by Emsa<br>Powered by TMDB</p>
+    </footer>
+    <script defer src="../Js/printResults.js"></script>
+    <script defer src="../Js/advancedSearch.js"></script>
+    <script defer src="../Js/favorite.js"></script>
     <script src="../Js/translations.js"></script>
 </body>
+
 </html>
