@@ -8,6 +8,7 @@ let value;
 function  changeLang(selectedValue){
     if(selectedValue === undefined) {
         value = "en";
+        setLocale(value);
     }else{
         value = selectedValue.value;
         localStorage.clear();
