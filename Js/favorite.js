@@ -8,17 +8,13 @@ let userID;
 
 // call loadFavorites() when page has loaded
 document.addEventListener("DOMContentLoaded", () => {
-	loadFavorites();
-    
+	loadFavorites(); 
 });
-
 
 
 function loadFavorites() {
     getFavoritesCount();
-    getFavorites();
-    // getUserID();
-    
+    getFavorites(); 
 }
 
 // insert a movie/series to the database
@@ -52,34 +48,6 @@ function putToFavorite(entertainmentName, rate, poster) {
 
 
 }
-
-// ---------------------------------------------------------------------
-
-// Get current user id
-function getUserID() {
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8080/api/getCurrentUser");
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onload = function () {
-        if (xhr.readyState === xhr.DONE) {
-            if (xhr.status === 200) {
-
-                let response = xhr.response;
-                let parsedResponse = JSON.parse(response);
-
-                console.log("currently logged userID: " + response);
-            }
-        }
-    }
-    xhr.send();
-}
-
-// ---------------------------------------------------------------------
-
-
-
 
 
 // Get all favorites from current user

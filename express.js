@@ -90,6 +90,7 @@ app.get('/api/register', (req, res) => {
     })()
 });
 
+
 // Insert a new user to the database
 app.post('/api/register', function(req, res) {
     let response = false;
@@ -107,6 +108,7 @@ app.post('/api/register', function(req, res) {
         res.send(response);
     })()
 });
+
 
 // Get all from specific user based on user_name and user_password
 app.post('/api/login', function(req, res) {
