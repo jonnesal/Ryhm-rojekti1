@@ -1,7 +1,7 @@
 :root {
     --background: #101119;
     --lighterbackground: #14151d;
-    --footer: #373947;    
+    --lightestbackground: #373947;    
     --yellow: #DEC62B;
     --mint: #00A388;
     --white: #EEF5FC;
@@ -53,14 +53,79 @@ body {
     color: var(--white);
     font-weight: 400;
     font-size: calc(6.51px + (25 - 6.51) * ((100vw - 500px) / (1920 - 500)));
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .language-picker {
     position: absolute;
-    top: 6%;
-    left: 67%;
+    top: 1%;
+    left: 70%;
     transform: translate(-50%, -50%);
+}
+
+#language-picker-select {
+    background-color: var(--white);
+    border: none;
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    color: var(--background);
+    outline: none;
+}
+
+#entertainmentId {
+    position: absolute;
+    top: 6%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+    border-color: var(--white);
+    border-width: 2px;
+    border-style: solid;
+    font-family: "Manrope", sans-serif;
+    color: var(--background);
+    outline: none;
+    height: 24px;
+    width: 175px;
+    font-size: 17px;
+}
+
+#entertainmentId::placeholder {
+    color: #C7C7C7;
+    opacity: 1;
+}
+  
+#entertainmentId:-ms-input-placeholder {
+    color: #C7C7C7;
+}
+  
+#entertainmentId::-ms-input-placeholder {
+    color: #C7C7C7;
+}
+
+#search-button {
+    position: absolute;
+    top: 6%;
+    left: 90.4%;
+    transform: translate(-50%, -50%);
+    height: 30px;
+    width: 30px;
+    background-color: var(--background);
+    border-style: solid;
+    border-color: var(--white);
+    border-width: 2px;
+    outline: none;
+}
+
+#input-search-button {
+    display: none;
+}
+
+#search-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
 }
 
 .bigtext {
@@ -82,7 +147,7 @@ body {
 .midmain {
     display: flex;
     align-items: center;
-    margin-right: calc(12.49px + (48 - 12.49) * ((100vw - 500px) / (1920 - 500)));
+    margin-right: calc(123.9px + (476 - 123.9) * ((100vw - 500px) / (1920 - 500)));
     gap: calc(31.2px + (120 - 31.2) * ((100vw - 500px) / (1920 - 500)));
 }
 
@@ -102,7 +167,7 @@ body {
 .midroulette {
     display: flex;
     align-items: center;
-    margin-right: calc(5.98px + (23 - 5.98) * ((100vw - 500px) / (1920 - 500)));
+    margin-right: calc(108.3px + (416 - 108.3) * ((100vw - 500px) / (1920 - 500)));
     gap: calc(31.2px + (120 - 31.2) * ((100vw - 500px) / (1920 - 500)));
 }
 
@@ -280,6 +345,6 @@ footer {
 
 .footertext {
     text-align: center;
-    color: var(--footer);
+    color: var(--lightestbackground);
     font-size: calc(3.9px + (15 - 3.9) * ((100vw - 500px) / (1920 - 500)));
 }

@@ -46,9 +46,18 @@ body, button {
 
 .language-picker {
     position: absolute;
-    top: 6%;
-    left: 95%;
+    top: 1%;
+    left: 70%;
     transform: translate(-50%, -50%);
+}
+
+#language-picker-select {
+    background-color: var(--white);
+    border: none;
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    color: var(--background);
+    outline: none;
 }
 
 h1 {
@@ -80,15 +89,23 @@ form {
 }
 
 input {
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    border-color: var(--white);
+    border: 0;
     width: calc(45.57px + (175 - 45.57) * ((100vw - 500px) / (1920 - 500)));
     height: calc(4.68px + (18 - 4.68) * ((100vw - 500px) / (1920 - 500)));
 }
 
-input::placeholder{
+input::placeholder {
+    font-size: calc(3.64px + (14 - 3.64) * ((100vw - 500px) / (1920 - 500)));
+    color: #C7C7C7;
+    opacity: 1;
+}
+  
+input:-ms-input-placeholder {
+    font-size: calc(3.64px + (14 - 3.64) * ((100vw - 500px) / (1920 - 500)));
+    color: #C7C7C7;
+}
+  
+input::-ms-input-placeholder {
     font-size: calc(3.64px + (14 - 3.64) * ((100vw - 500px) / (1920 - 500)));
     color: #C7C7C7;
 }
