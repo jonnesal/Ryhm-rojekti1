@@ -5,6 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0"/>
     <meta charset="utf-8">
     <title>Questions | WTW</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +13,8 @@
 </head>
 
 <body>
+
+    <a href="main.html"><span id="home" class="material-symbols-sharp">home</span></a>
 
     <div class="navbar">
         <span><a class="navitems" href="favorites.html" data-i18n-key="favorites">Favorites</a></span>
@@ -29,12 +32,15 @@
         </form>
     </div>
 
+    <form action="">
+        <input type="text" id="entertainmentId" name="entertainmentName" placeholder="Search"></input>
+        <button id="search-button"><input type="submit" id="input-search-button"><span class="material-symbols-sharp" id="search-icon">search</span></button>
+    </form>
+
     <p class="bigtext" data-i18n-key="qustionTitle">Make your selections and get something to watch!</p>
 
     <div class="midquestions">
         <div class="question_div">
-            <p style="color:white">Movie/series name:</p>
-            <input type="text" id="entertainmentId" name="entertainmentName"></input>
             <div class="midtext" data-i18n-key="quesMedia">What type of media?</div>
             <div class="buttons">
 
@@ -125,13 +131,12 @@
     <div id="results">
     </div>
 
-    <footer>
-        <p class="footertext">Design by Emsa<br>Powered by TMDB</p>
-    </footer>
-    <script defer src="../Js/printResults.js"></script>
-    <script defer src="../Js/advancedSearch.js"></script>
-    <script defer src="../Js/favorite.js"></script>
-    <script src="../Js/translations.js"></script>
+<footer>
+<p class="footertext">Design by Emsa<br>Powered by TMDB</p>
+</footer>
+<script defer src="../Js/printResults.js"></script>
+<script defer src="../Js/advancedSearch.js"></script>
+<script defer src="../Js/favorite.js"></script>
+<script src="../Js/translations.js"></script>
 </body>
-
 </html>
