@@ -3,16 +3,21 @@ const results = JSON.parse(localStorage.getItem("Results"));
 
 const favButton = document.querySelector("#favorites_search");
 
-let favCount = 1;           // how many favorites current user has
+let favCount = 1;       // how many favorites the current user has
+let userID;
 
+// call loadFavorites() when page has loaded
+document.addEventListener("DOMContentLoaded", () => {
+	loadFavorites(); 
+});
 
 
 function loadFavorites() {
-    console.log("meni load ");
     getFavoritesCount();
-    getFavorites();
+    getFavorites(); 
 }
 
+// insert a movie/series to the database
 function putToFavorite(entertainmentName, rate, poster) {
 
     let Name = entertainmentName;
@@ -45,7 +50,6 @@ function putToFavorite(entertainmentName, rate, poster) {
 }
 
 
-
 // Get all favorites from current user
 function getFavorites() {
 
@@ -59,6 +63,7 @@ function getFavorites() {
 
                 let response = xhr.response;
                 let parsedResponse = JSON.parse(response);
+                
 
                 printResults2(parsedResponse);
             }
@@ -67,7 +72,7 @@ function getFavorites() {
     xhr.send();
 }
 
-// Get favorite count from current user
+// Get the number of favorite movies/series from the current user
 function getFavoritesCount() {
 
     let xhr = new XMLHttpRequest();
@@ -79,14 +84,10 @@ function getFavoritesCount() {
             if (xhr.status === 200) {
 
                 let response = xhr.response;
-                let jsonResponse = JSON.stringify(response);
                 let parsedResponse = JSON.parse(response);
-                let parsedResponse2 = JSON.parse(jsonResponse);
 
                 favCount = parsedResponse.rowCount;
-                console.log("favCount: " + favCount);
-                
-                
+                console.log("favCount: " + favCount);       
             }
         }
     }
@@ -96,7 +97,6 @@ function getFavoritesCount() {
 
 // -------------- Print favorites to page --------------------------
 const printResults2 = (result) => {
-
     const favResultsDiv = document.querySelector("#favResults");
     
     let searchAmount =  favCount;
@@ -119,16 +119,21 @@ const printResults2 = (result) => {
         title.setAttribute("class", "title");
         title.innerText = result[i].name;
 
+        const delFavorite = document.createElement("button");
+        delFavorite.setAttribute("class","deleteFavorite")
+        delFavorite.innerText = "delete";
+        delFavorite.onclick = function() {deleteFromDatabase(title.innerHTML)};
 
         favResultsDiv.appendChild(container);
         container.appendChild(title);
         container.appendChild(cover);
+        container.appendChild(delFavorite);
 
     }
 }
 
 
-//Poistamistoiminto testauksia varten
+// Poistamistoiminto testauksia varten
 function deleteFromDatabase(name) {
 
     const data = {
@@ -141,8 +146,6 @@ function deleteFromDatabase(name) {
     xhr.onload = function () {
         console.log(xhr.responseText);
     }
-
-
 
     let eventString = JSON.stringify(data);
     xhr.send(eventString);
