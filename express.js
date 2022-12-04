@@ -11,6 +11,7 @@ const app = express();
 let loggedIn = false;
 let currentUser;
 
+
 app.use(cors({
     origin: '*'
 }));
@@ -135,16 +136,6 @@ app.post('/api/login', function(req, res) {
 });
 
 
-// Get the user_id from user based on name and password
-app.get('/api/getCurrentUser', function (req, res) {
-
-    let sql = "SELECT user_id FROM users WHERE user_name = ? AND user_pass = ?";
-
-    query(sql, [req.body.username, req.body.password], function (err, results) {
-
-    });
-    console.log("currentUser: " + currentUser);
-});
 
 // Check the user_id from the current user and paste it to currentUser
 function checkCurrentUser(username, password) {
@@ -239,16 +230,15 @@ searchRouter.get('/api/CountFavorites', function (req, res) {
 
 
 
-
-// delete movie/series from favorites based on the name
+// delete movie/series from favorites based on the user_id and movie name
 app.delete('/api/favorites', function(req, res) {
     let response = false;
     let sql = "DELETE FROM Favorite" +
-        " WHERE name = ?";
+        " WHERE user_id = ? AND name = ?";
 
     (async function() {
         try {
-            let result = await query(sql, [req.body.name]);
+            let result = await query(sql, [currentUser, req.body.name]);
             if (result.affectedRows != 0) {
                 response = true;
             }
@@ -258,6 +248,8 @@ app.delete('/api/favorites', function(req, res) {
         res.send(response);
     })()
 });
+
+
 
 // server port: 8080
 const server = app.listen(PORT, function() {
