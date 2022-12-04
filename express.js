@@ -8,6 +8,10 @@ const cors = require('cors');
 const app = express();
 
 
+let loggedIn = false;
+let currentUser;
+
+
 app.use(cors({
     origin: '*'
 }));
@@ -72,11 +76,11 @@ app.get("/style", (req, res) => {
 
 
 
-
+// Get all from users
 app.get('/api/register', (req, res) => {
     let sql = "SELECT * FROM users";
 
-    (async function () {
+    (async function() {
         try {
             const rows = await query(sql);
             res.send(rows);
@@ -87,11 +91,12 @@ app.get('/api/register', (req, res) => {
 });
 
 
-app.post('/api/register', function (req, res) {
+// Insert a new user to the database
+app.post('/api/register', function(req, res) {
     let response = false;
     let sql = "INSERT INTO users (first_name, last_name, user_name, user_pass)" +
         " VALUES (?, ?, ?, ?)";
-    (async function () {
+    (async function() {
         try {
             let result = await query(sql, [req.body.fname, req.body.lname, req.body.username, req.body.password]);
             if (result.affectedRows != 0) {
@@ -102,39 +107,57 @@ app.post('/api/register', function (req, res) {
         }
         res.send(response);
     })()
-})
+});
 
 
-app.post('/api/login', function (req, res) {
+// Get all from specific user based on user_name and user_password
+app.post('/api/login', function(req, res) {
     let response = "false";
     let sql = "SELECT * FROM users WHERE user_name = ? AND user_pass = ?";
 
+    let username = req.body.username;
+    let password = req.body.password;
 
-    query(sql, [req.body.username, req.body.password], function (err, results) {
+    query(sql, [req.body.username, req.body.password], function(err, results) {
         if (results.length > 0) {
-            console.log("if toimii");
+
+            loggedIn = true;
+            console.log("expressjs loggedIn: " + loggedIn);
+
+            checkCurrentUser(username, password);
+
             response = "true";
         } else {
-            console.log("if ei toimi");
+
+            loggedIn = false;
+            console.log("expressjs loggedIn: " + loggedIn);
         }
         res.send(response);
     });
 
-
-
-})
-
+});
 
 
 
+// Check the user_id from the current user and paste it to currentUser
+function checkCurrentUser(username, password) {
+    let sql = "SELECT user_id FROM users WHERE user_name = ? AND user_pass = ?";
+
+    query(sql, [username, password], function (err, results) {
+        currentUser = results[0].user_id;
+        console.log("Current user ID: " +currentUser);     
+    });
+    
+}
 
 
 
+// Get all from favorites
 searchRouter.get('/api/favorites', function (req, res) {
-    let sql = "SELECT *" +
-        " FROM favorite";
+    let sql = "SELECT * FROM favorite";
 
-    (async function () {
+
+    (async function() {
         try {
             const rows = await query(sql);
             res.send(rows);
@@ -142,18 +165,82 @@ searchRouter.get('/api/favorites', function (req, res) {
             console.log("Database error. " + err);
         }
     })()
-})
+});
 
-searchRouter.post('/api/favorites', function (req, res) {
+
+// Insert a movie/series in the favorites for the current user
+searchRouter.post('/api/favorites', function(req, res) {
     let response = false;
     let sql = "INSERT INTO favorite (name, rating, date, imageURL, user_id)" +
         " VALUES (?, ?, ?, ?, ?)";
 
+    (async function() {
+        try {
+            if (loggedIn) {
+                console.log("loggedIn on true");
+
+                let result = await query(sql, [req.body.name, req.body.rating, req.body.dateAdded,
+                    req.body.posterPath, currentUser
+                ]);
+                if (result.affectedRows != 0) {
+                    response = true;
+                }
+
+            } else {
+                console.log("loggedIn on false");
+            }
+
+
+        } catch (err) {
+            console.log("Database error. " + err);
+        }
+        res.send(response);
+    })()
+});
+
+//  Get all favorites from current user
+searchRouter.get('/api/getFavoritesFromCurrentUser', function (req, res) {
+    let sql = "SELECT * FROM favorite WHERE user_id = " + currentUser;
+
     (async function () {
         try {
-            let result = await query(sql, [req.body.name, req.body.rating, req.body.dateAdded,
-                req.body.posterPath, req.body.userId
-            ]);
+            const rows = await query(sql);
+            console.log("favorite rows length: " + rows.length);
+            res.send(rows);
+        } catch (err) {
+            console.log("Database error. " + err);
+        }
+    })()
+});
+
+
+// Count how many movies/series current user has in favorites
+searchRouter.get('/api/CountFavorites', function (req, res) {
+    let sql = "SELECT * FROM favorite WHERE user_id = " + currentUser;
+
+    (async function () {
+        try {
+            const rows = await query(sql);
+            const rowCount = rows.length;
+            console.log("row Count: " + rowCount);
+            res.send( {rowCount : rowCount });
+        } catch (err) {
+            console.log("Database error. " + err);
+        }
+    })()
+});
+
+
+
+// delete movie/series from favorites based on the user_id and movie name
+app.delete('/api/favorites', function(req, res) {
+    let response = false;
+    let sql = "DELETE FROM Favorite" +
+        " WHERE user_id = ? AND name = ?";
+
+    (async function() {
+        try {
+            let result = await query(sql, [currentUser, req.body.name]);
             if (result.affectedRows != 0) {
                 response = true;
             }
@@ -162,12 +249,14 @@ searchRouter.post('/api/favorites', function (req, res) {
         }
         res.send(response);
     })()
-})
+});
 
 
-const server = app.listen(PORT, function () {
+
+// server port: 8080
+const server = app.listen(PORT, function() {
     const host = server.address().address;
     const port = server.address().port;
 
     console.log("Mose express listening at http://localhost:%s", port);
-})
+});

@@ -1,6 +1,7 @@
 {
     "scripts": {
-        "startexp": "nodemon ./express.js"
+        "startexp": "nodemon ./express.js",
+        "test": "http-server tests -o -c1"
     },
     "dependencies": {
         "body-parser": "^1.20.0",
@@ -10,11 +11,15 @@
         "express-session": "^1.17.3",
         "http": "^0.0.1-security",
         "http-server": "^14.1.1",
+        "mariadb": "^3.0.2",
         "mysql": "^2.18.1",
         "node-fetch": "^3.2.10",
         "nodemon": "^2.0.20",
         "server": "^1.0.37",
         "url": "^0.11.0",
         "util": "^0.12.4"
+    },
+    "devDependencies": {
+        "jasmine": "^4.5.0"
     }
 }

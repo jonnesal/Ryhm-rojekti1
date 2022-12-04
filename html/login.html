@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700&display=swap" rel="stylesheet">
@@ -16,21 +17,36 @@
 
     <a href="main.html"><span id="home" class="material-symbols-rounded">home</span></a>
 
+    <div class="language-picker">
+        <form action="" class="language-picker-form">
+            <select name="language-picker-select" id="language-picker-select" onchange="changeLang(this)">
+                <option lang="en" value="en" selected>English</option>
+                <option lang="in" value="hindi">Hindi</option>
+            </select>
+        </form>
+    </div>
+
     <div class="box">
-        <h1>What To Watch</h1>
-            <form action="" method="POST">
+
+        <h1 data-i18n-key="title" >What To Watch</h1>
+            <form action="" method="POST" >
+                <label hidden data-i18n-key="Username" id="placeholderName">Username</label>
+                <label hidden data-i18n-key="Password" id="PlaceholderPass">Password</label>
                 <input type="email" id="username" name="username" class="input-field" placeholder="Username" spellcheck="false"/>
                 <input type="password" id="password" name="password" class="input-field" placeholder="Password" spellcheck="false"/>
             </form>
-        <button type="submit" id="loginButton" class="btn"><span>Log in</span></button>
+            
+        <button id="loginButton" class="btn"><span data-i18n-key="logIn">Log in</span></button>
         <br>
         <br>
-        <a id="registeredquestion" href="register.html">Need to register first?</a>
+        <a id="registeredquestion" href="register.html" data-i18n-key="description" >Need to register first?</a>
     </div>    
 
 <footer>
 <p class="footertext">Design by Emsa<br>Powered by TMDB</p>
 </footer>
-<script defer src="../Js/login.js"></script>
+<script defer src="../Js/login.js"></script> 
+<script defer src="../Js/translations.js"></script>
+<script defer src="../Js/main.js"></script>
 </body>
 </html>

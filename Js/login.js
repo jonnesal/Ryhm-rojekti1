@@ -1,11 +1,18 @@
 const loginButton = document.querySelector('#loginButton');
 
+let loggedIn = false;
 
-loginButton.addEventListener("click", () => {
-    login();
-})
+// Add login function to the login button
+$(document).ready(function () {
+    $("#loginButton").click(function () {
+        login();
 
-function login() {
+    });
+});
+
+
+
+async function login() {
     let userName = document.getElementById('username').value;
     let password = document.getElementById('password').value;
 
@@ -14,22 +21,28 @@ function login() {
         "password": password
     }
 
-
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:8080/api/login");
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onload = function() {
-        console.log("xhr" + xhr.responseText);
+    xhr.onload = function () {
+        console.log("xhr " + xhr.responseText);
         if (xhr.responseText == "true") {
             console.log("Bool toimii");
-             window.location.href = "../html/main.html";
+            loggedIn = true;
+            console.log("loginjs loggedIn: " + loggedIn);
+            window.location.href = "../html/main.html";
+
+
         } else {
-            console.log("bool ei toimi");
+            console.log("bool meni else ");
+            loggedIn = false;
+            console.log("loginjs loggedIn: " + loggedIn);
         }
     }
     console.log(data);
     let eventString = JSON.stringify(data);
+
     xhr.send(eventString);
 
 }
