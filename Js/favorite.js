@@ -1,30 +1,43 @@
-const position = localStorage.getItem("Position");
-const results = JSON.parse(localStorage.getItem("Results"));
-
+//const position = localStorage.getItem("Position");
+const typevalue = localStorage.getItem("type");
 const favButton = document.querySelector("#favorites_search");
 
-let favCount = 1;       // how many favorites the current user has
+let favCount = 1; // how many favorites the current user has
 let userID;
 
 // call loadFavorites() when page has loaded
 document.addEventListener("DOMContentLoaded", () => {
-	loadFavorites(); 
+    loadFavorites();
 });
 
 
 function loadFavorites() {
     getFavoritesCount();
-    getFavorites(); 
+    getFavorites();
 }
 
 // insert a movie/series to the database
-function putToFavorite(entertainmentName, rate, poster) {
+function putToFavorite(result, position, typevalue) {
+    let results = JSON.parse(result);
+    let Name;
+    let Rating
+    let posterPath
 
-    let Name = entertainmentName;
-    let Rating = rate
+
+    if (typevalue == 1) {
+        Name = results.results[position].original_title;
+    } else {
+        Name = results.results[position].original_name;
+    }
+
+    Rating = results.results[position].vote_average;
+    posterPath = results.results[position].poster_path;
+
+    console.log(Name);
+
     console.log(Rating);
     let dateAdded = new Date().toISOString().slice(0, 10);
-    let posterPath = poster
+
 
     const data = {
         "name": Name,
@@ -37,7 +50,7 @@ function putToFavorite(entertainmentName, rate, poster) {
     xhr.open("POST", "http://localhost:8080/api/favorites", false);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onload = function () {
+    xhr.onload = function() {
         console.log(xhr.responseText);
 
     }
@@ -57,13 +70,13 @@ function getFavorites() {
     xhr.open("GET", "http://localhost:8080/api/getFavoritesFromCurrentUser");
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onload = function () {
+    xhr.onload = function() {
         if (xhr.readyState === xhr.DONE) {
             if (xhr.status === 200) {
 
                 let response = xhr.response;
                 let parsedResponse = JSON.parse(response);
-                
+
 
                 printResults2(parsedResponse);
             }
@@ -79,7 +92,7 @@ function getFavoritesCount() {
     xhr.open("GET", "http://localhost:8080/api/CountFavorites");
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onload = function () {
+    xhr.onload = function() {
         if (xhr.readyState === xhr.DONE) {
             if (xhr.status === 200) {
 
@@ -87,7 +100,7 @@ function getFavoritesCount() {
                 let parsedResponse = JSON.parse(response);
 
                 favCount = parsedResponse.rowCount;
-                console.log("favCount: " + favCount);       
+                console.log("favCount: " + favCount);
             }
         }
     }
@@ -98,8 +111,8 @@ function getFavoritesCount() {
 // -------------- Print favorites to page --------------------------
 const printResults2 = (result) => {
     const favResultsDiv = document.querySelector("#favResults");
-    
-    let searchAmount =  favCount;
+
+    let searchAmount = favCount;
     console.log("searchAmount: " + searchAmount);
     favResultsDiv.innerHTML = ``;
 
@@ -120,9 +133,9 @@ const printResults2 = (result) => {
         title.innerText = result[i].name;
 
         const delFavorite = document.createElement("button");
-        delFavorite.setAttribute("class","deleteFavorite")
+        delFavorite.setAttribute("class", "deleteFavorite")
         delFavorite.innerText = "delete";
-        delFavorite.onclick = function() {deleteFromDatabase(title.innerHTML)};
+        delFavorite.onclick = function() { deleteFromDatabase(title.innerHTML) };
 
         favResultsDiv.appendChild(container);
         container.appendChild(title);
@@ -143,7 +156,7 @@ function deleteFromDatabase(name) {
     xhr.open("DELETE", "http://localhost:8080/api/favorites", false);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onload = function () {
+    xhr.onload = function() {
         console.log(xhr.responseText);
     }
 

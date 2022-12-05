@@ -52,11 +52,11 @@ function randomize() {
     let value = document.querySelector('input[name="roulette"]:checked').value;
 
     if (value == 1) {
-        url = `https://api.themoviedb.org/3/discover/movie?api_key=ffbef3b4a61b4f7178a8fe83e0ad8b9d&page=${page}&vote_average.gte=${score}&include_adult=true`;
+        url = `https://api.themoviedb.org/3/discover/movie?api_key=ffbef3b4a61b4f7178a8fe83e0ad8b9d&page=${page}&vote_average.gte=${score}&include_adult=false`;
         type = value;
         return url;
     } else {
-        url = `https://api.themoviedb.org/3/discover/tv?api_key=ffbef3b4a61b4f7178a8fe83e0ad8b9d&page=${page}&vote_average.gte=${score}&include_adult=true`;
+        url = `https://api.themoviedb.org/3/discover/tv?api_key=ffbef3b4a61b4f7178a8fe83e0ad8b9d&page=${page}&vote_average.gte=${score}&include_adult=false`;
         type = value;
         return url;
     }
