@@ -1,10 +1,14 @@
 const resultsDiv = document.querySelector("#results");
+const url = localStorage.getItem("Searchurl");
 let searchAmount;
-let typeValue;
 
-const searchUrl = (url, Amount, type) => {
+window.onload = function() {
+    console.log(url);
+    searchUrl(url, 10)
+}
+
+const searchUrl = (url, Amount) => {
     searchAmount = Amount;
-    typeValue = type;
     fetch(url)
         .then(response => response.json())
         .then(results => printResults(results))
@@ -16,52 +20,40 @@ const printResults = (results) => {
 
     for (let i = 0; i < searchAmount; i++) {
         const entertainmentdiv = document.createElement("div");
+        entertainmentdiv.setAttribute("id", "entertainmentDiv");
+
         const entertainment = document.createElement("a");
         entertainment.className = "entertainment";
 
-        const cover = document.createElement("img");
-        entertainmentdiv.setAttribute("id", "entertainmentDiv");
-        cover.src = "https://image.tmdb.org/t/p/original/" + results.results[i].poster_path
-        cover.setAttribute("id", "cover");
-
-
-
         let mediaId = results.results[i].id;
+        if (results.results[i].media_type == "movie") {
 
-        //Elokuva    Elokuvassa ja sarjassa pitää hakea eri nimisistä tauluista tietoa tässä se katsoo kumpi on sivulla valittu
-        //ja hakee sen perusteella
-        if (typeValue == 1) {
-
-            cover.alt = "Cover of " + results.results[i].original_title;
             entertainment.href = 'https://www.themoviedb.org/movie/' + mediaId;
-
-
-            //Sarja
         } else {
-
-            cover.alt = "Cover of " + results.results[i].original_name;
             entertainment.href = 'https://www.themoviedb.org/tv/' + mediaId;
         }
 
-        cover.style = "width:100%";
 
-        //favorite button
+        const cover = document.createElement("img");
+        cover.src = "https://image.tmdb.org/t/p/original/" + results.results[i].poster_path
+        cover.setAttribute("id", "cover");
+        cover.style = "width:15%";
+
         const favorite = document.createElement("button");
         favorite.setAttribute("id", "favorite");
         favorite.innerText = "Favorite";
 
-        //tallenetaan kyseisen favoriten tiedot
         favorite.addEventListener("click", () => {
-            putToFavorite(JSON.stringify(results), i, typeValue);
+
+            putToFavorite(JSON.stringify(results), i, 1);
         });
+
+
 
         resultsDiv.appendChild(entertainmentdiv);
         entertainmentdiv.appendChild(entertainment);
-        entertainment.appendChild(cover);
         entertainmentdiv.appendChild(favorite);
-
-
+        entertainment.appendChild(cover);
     }
-
 
 }
