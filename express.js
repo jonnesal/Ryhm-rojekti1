@@ -143,17 +143,17 @@ app.post('/api/login', function(req, res) {
 function checkCurrentUser(username, password) {
     let sql = "SELECT user_id FROM users WHERE user_name = ? AND user_pass = ?";
 
-    query(sql, [username, password], function (err, results) {
+    query(sql, [username, password], function(err, results) {
         currentUser = results[0].user_id;
-        console.log("Current user ID: " +currentUser);     
+        console.log("Current user ID: " + currentUser);
     });
-    
+
 }
 
 
 
 // Get all from favorites
-searchRouter.get('/api/favorites', function (req, res) {
+searchRouter.get('/api/favorites', function(req, res) {
     let sql = "SELECT * FROM favorite";
 
 
@@ -170,6 +170,8 @@ searchRouter.get('/api/favorites', function (req, res) {
 
 // Insert a movie/series in the favorites for the current user
 searchRouter.post('/api/favorites', function(req, res) {
+
+
     let response = false;
     let sql = "INSERT INTO favorite (name, rating, date, imageURL, user_id)" +
         " VALUES (?, ?, ?, ?, ?)";
@@ -177,6 +179,7 @@ searchRouter.post('/api/favorites', function(req, res) {
     (async function() {
         try {
             if (loggedIn) {
+
                 console.log("loggedIn on true");
 
                 let result = await query(sql, [req.body.name, req.body.rating, req.body.dateAdded,
@@ -199,10 +202,10 @@ searchRouter.post('/api/favorites', function(req, res) {
 });
 
 //  Get all favorites from current user
-searchRouter.get('/api/getFavoritesFromCurrentUser', function (req, res) {
+searchRouter.get('/api/getFavoritesFromCurrentUser', function(req, res) {
     let sql = "SELECT * FROM favorite WHERE user_id = " + currentUser;
 
-    (async function () {
+    (async function() {
         try {
             const rows = await query(sql);
             console.log("favorite rows length: " + rows.length);
@@ -215,15 +218,15 @@ searchRouter.get('/api/getFavoritesFromCurrentUser', function (req, res) {
 
 
 // Count how many movies/series current user has in favorites
-searchRouter.get('/api/CountFavorites', function (req, res) {
+searchRouter.get('/api/CountFavorites', function(req, res) {
     let sql = "SELECT * FROM favorite WHERE user_id = " + currentUser;
 
-    (async function () {
+    (async function() {
         try {
             const rows = await query(sql);
             const rowCount = rows.length;
             console.log("row Count: " + rowCount);
-            res.send( {rowCount : rowCount });
+            res.send({ rowCount: rowCount });
         } catch (err) {
             console.log("Database error. " + err);
         }

@@ -18,24 +18,34 @@ function loadFavorites() {
 
 // insert a movie/series to the database
 function putToFavorite(result, position, typevalue) {
-    let results = JSON.parse(result);
+
+    let results
     let Name;
     let Rating
     let posterPath
 
+    if (result.test == true) {
 
-    if (typevalue == 1) {
-        Name = results.results[position].original_title;
+        Name = result.name;
+        Rating = result.rate;
+        posterPath = result.posterpath;
     } else {
-        Name = results.results[position].original_name;
+        results = JSON.parse(result);
+        if (typevalue == 1) {
+            Name = results.results[position].original_title;
+        } else {
+            Name = results.results[position].original_name;
+        }
+
+        Rating = results.results[position].vote_average;
+        posterPath = results.results[position].poster_path;
+
+
     }
 
-    Rating = results.results[position].vote_average;
-    posterPath = results.results[position].poster_path;
 
-    console.log(Name);
 
-    console.log(Rating);
+
     let dateAdded = new Date().toISOString().slice(0, 10);
 
 
@@ -165,3 +175,17 @@ function deleteFromDatabase(name) {
     return xhr.responseText;
 
 }
+
+
+function testFavorite(testNumber, data) {
+    if (testNumber == 1) {
+
+        return putToFavorite(data);
+    } else {
+
+        return deleteFromDatabase(data);
+    }
+
+}
+
+module.exports = testFavorite
