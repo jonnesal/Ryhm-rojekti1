@@ -1,0 +1,4 @@
+{
+    "testEnvironment": "jsdom",
+    "setupFiles": ["./setup-jest.js"]
+}
