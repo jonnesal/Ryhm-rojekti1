@@ -5,11 +5,34 @@ const favButton = document.querySelector("#favorites_search");
 let favCount = 1; // how many favorites the current user has
 let userID;
 
+
 // call loadFavorites() when page has loaded
 document.addEventListener("DOMContentLoaded", () => {
     loadFavorites();
+
+
+    if (localStorage.getItem("loggedIn") == "true") {
+		console.log("hide buttons");
+		hideButtons();
+	} 
+	else {
+		console.log("show buttons");
+		showButtons();
+	}
+
+
 });
 
+function hideButtons() {
+    document.getElementById("favorites").style.display = "none";
+	document.getElementById("login").style.display = "none";
+	document.getElementById("register").style.display = "none";
+}
+
+function showButtons() {
+	document.getElementById("login").style.display = "unset";
+	document.getElementById("register").style.display = "unset";
+}
 
 function loadFavorites() {
     getFavoritesCount();
@@ -188,4 +211,3 @@ function testFavorite(testNumber, data) {
 
 }
 
-module.exports = testFavorite

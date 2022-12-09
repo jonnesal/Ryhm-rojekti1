@@ -2,6 +2,35 @@ const resultsDiv = document.querySelector("#results");
 let searchAmount;
 let typeValue;
 
+
+// ***********
+document.addEventListener("DOMContentLoaded", () => {
+
+
+    if (localStorage.getItem("loggedIn") == "true") {
+		console.log("hide buttons");
+		hideButtons();
+	} 
+	else {
+		console.log("show buttons");
+		showButtons();
+	}
+
+
+});
+
+function hideButtons() {
+	document.getElementById("login").style.display = "none";
+	document.getElementById("register").style.display = "none";
+}
+
+function showButtons() {
+    document.getElementById("favorites").style.display = "none";
+	document.getElementById("login").style.display = "unset";
+	document.getElementById("register").style.display = "unset";
+}
+
+
 const searchUrl = (url, Amount, type) => {
     searchAmount = Amount;
     typeValue = type;
@@ -47,7 +76,7 @@ const printResults = (results) => {
 
         //favorite button
         const favorite = document.createElement("button");
-        favorite.setAttribute("id", "favorite");
+        favorite.setAttribute("id", "favorite_roulette");
         favorite.innerText = "Favorite";
 
         //tallenetaan kyseisen favoriten tiedot

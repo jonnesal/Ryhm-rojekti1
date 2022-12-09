@@ -52,7 +52,6 @@ const printResults = (results) => {
             const cover = document.createElement("img");
             cover.src = "https://image.tmdb.org/t/p/original/" + results.results[i].poster_path
             cover.setAttribute("id", "cover");
-            cover.style = "width:15%";
 
             const favorite = document.createElement("button");
             favorite.setAttribute("id", "favorite");
@@ -67,7 +66,7 @@ const printResults = (results) => {
 
             resultsDiv.appendChild(entertainmentdiv);
             entertainmentdiv.appendChild(entertainment);
-            entertainmentdiv.appendChild(favorite);
+            entertainment.appendChild(favorite);
             entertainment.appendChild(cover);
 
         } else if (i == 20) {
