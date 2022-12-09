@@ -2,10 +2,13 @@ const testFavorite = require('../favorite');
 const loginbefore = require('../login');
 
 
+
+
 //Logins before doing any tests
 beforeAll(() => {
     loginbefore("rulla", "joku22");
 });
+
 
 test("Movie/series should be able to be added in to the database", () => {
 
@@ -22,6 +25,7 @@ test("Movie/series should be able to be added in to the database", () => {
 
 
 })
+
 
 test("Movie/series should be able to be removed in to the database", () => {
 

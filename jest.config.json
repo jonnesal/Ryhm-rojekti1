@@ -1,4 +1,5 @@
 {
     "testEnvironment": "jsdom",
-    "setupFiles": ["./setup-jest.js"]
+    "setupFiles": ["./setup-jest.js"],
+    "testURL": "http://localhost:8080"
 }
