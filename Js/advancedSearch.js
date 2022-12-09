@@ -2,6 +2,33 @@ const advancedButton = document.querySelector("#questions_search");
 searchAmount = 10;
 type = null;
 
+
+document.addEventListener("DOMContentLoaded", () => {
+
+	if (localStorage.getItem("loggedIn") == "true") {
+		console.log("hide buttons");
+		hideButtons();
+	} 
+	else {
+		console.log("show buttons");
+		showButtons();
+	}
+
+});
+
+function hideButtons() {
+	document.getElementById("login").style.display = "none";
+	document.getElementById("register").style.display = "none";
+}
+
+function showButtons() {
+    document.getElementById("favorites").style.display = "none";
+	document.getElementById("login").style.display = "unset";
+	document.getElementById("register").style.display = "unset";
+}
+
+
+
 advancedButton.addEventListener("click", () => {
 
     let url = generate();
