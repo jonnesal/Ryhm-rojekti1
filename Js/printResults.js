@@ -76,7 +76,7 @@ const printResults = (results) => {
 
         //favorite button
         const favorite = document.createElement("button");
-        favorite.setAttribute("id", "favorite");
+        favorite.setAttribute("id", "favorite_roulette");
         favorite.innerText = "Favorite";
 
         //tallenetaan kyseisen favoriten tiedot

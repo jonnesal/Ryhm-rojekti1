@@ -147,7 +147,7 @@ body {
 .midmain {
     display: flex;
     align-items: center;
-    margin-right: calc(123.9px + (476 - 123.9) * ((100vw - 500px) / (1920 - 500)));
+    margin-right: calc(105.4px + (405 - 105.4) * ((100vw - 500px) / (1920 - 500)));
     gap: calc(31.2px + (120 - 31.2) * ((100vw - 500px) / (1920 - 500)));
 }
 
@@ -203,7 +203,7 @@ body {
     overflow: hidden;
 }
 
-#favorite {
+#favorite_roulette {
     position: absolute;
     top: 90%;
     left: 50%;
@@ -212,9 +212,32 @@ body {
 }
 
 #cover {
+    height: calc(131.5px + (505 - 131.5) * ((100vw - 500px) / (1920 - 500)));
+    width: 100%;
+    aspect-ratio: 2/4;
+    border: calc(3.9px + (15 - 3.9) * ((100vw - 500px) / (1920 - 500)));
+    border-style: solid;
+    border-color: var(--background);
+    margin-bottom: -25px;
+}
+
+#results {
     display: flex;
     align-items: center;
-    height: calc(123.42px + (474 - 123.42) * ((100vw - 500px) / (1920 - 500)));
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 46.9%;
+    transform: translate(-50%, -50%);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    white-space: nowrap;
+    width: 82.5vw;
+    max-width: 82.5vw;
+    height: 75vh;
+    max-height: 75vh;
+    margin-top: 45px;    
 }
 
 .buttons {
@@ -263,6 +286,27 @@ body {
 
 .button label input + span {
     color: var(--white);
+}
+
+#favorite, .previousButton, .nextButton {
+    font-family: "Manrope", sans-serif;
+    background-color: var(--background);
+    border-color: var(--white);
+    color: var(--white);
+    margin-top: calc(2.6px + (10 - 2.6) * ((100vw - 500px) / (1920 - 500)));
+    border-style: solid;
+    border-width: 1px;
+}
+
+#favorite {
+    position: relative;
+    left: 61.2%;
+    transform: translate(0%, -150%);
+}
+
+#favorite:hover, .previousButton:hover, .nextButton:hover {
+    background-color: var(--footer);
+    cursor: pointer;
 }
 
 #roulette input:checked + span {
