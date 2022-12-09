@@ -33,13 +33,6 @@
         "setupFiles": ["./setup-jest.js"],
         "testEnvironmentOptions": {
             "url": "http://localhost:8080"
-        },
-
-        "exports": {
-            "require": "./Js/databaseconnection.js",
-            "import": "./Js/databaseconnection.js"
-
-        },
-        "type": "module"
+        }
     }
 }
