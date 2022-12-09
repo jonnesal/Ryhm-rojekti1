@@ -24,13 +24,15 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-const connection = require('./Js/databaseconnection.js');
+
 
 const query = util.promisify(connection.query).bind(connection);
 
 const loginRoute = require('./routes/loginRouter');
 const searchRouter = require('./routes/search');
 const registerRouter = require('./routes/registerRouter');
+
+const connection = require('./Js/databaseconnection.js');
 
 app.use('/', loginRoute);
 app.use('/', searchRouter);
