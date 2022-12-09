@@ -124,7 +124,7 @@ app.post('/api/login', function(req, res) {
             loggedIn = true;
             console.log("expressjs loggedIn: " + loggedIn);
 
-            
+
 
             checkCurrentUser(username, password);
 
@@ -258,8 +258,9 @@ searchRouter.get('/api/CountFavorites', function(req, res) {
 
 // delete movie/series from favorites based on the user_id and movie name
 app.delete('/api/favorites', function(req, res) {
+
     let response = false;
-    let sql = "DELETE FROM Favorite" +
+    let sql = "DELETE FROM favorite" +
         " WHERE user_id = ? AND name = ?";
 
     (async function() {

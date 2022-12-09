@@ -12,26 +12,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     if (localStorage.getItem("loggedIn") == "true") {
-		console.log("hide buttons");
-		hideButtons();
-	} 
-	else {
-		console.log("show buttons");
-		showButtons();
-	}
+        console.log("hide buttons");
+        hideButtons();
+    } else {
+        console.log("show buttons");
+        showButtons();
+    }
 
 
 });
 
 function hideButtons() {
     document.getElementById("favorites").style.display = "none";
-	document.getElementById("login").style.display = "none";
-	document.getElementById("register").style.display = "none";
+    document.getElementById("login").style.display = "none";
+    document.getElementById("register").style.display = "none";
 }
 
 function showButtons() {
-	document.getElementById("login").style.display = "unset";
-	document.getElementById("register").style.display = "unset";
+    document.getElementById("login").style.display = "unset";
+    document.getElementById("register").style.display = "unset";
 }
 
 function loadFavorites() {
@@ -65,9 +64,6 @@ function putToFavorite(result, position, typevalue) {
 
 
     }
-
-
-
 
     let dateAdded = new Date().toISOString().slice(0, 10);
 
@@ -180,10 +176,10 @@ const printResults2 = (result) => {
 
 
 // Poistamistoiminto testauksia varten
-function deleteFromDatabase(name) {
-
+function deleteFromDatabase(name, test) {
     const data = {
-        "name": name
+        "name": name,
+        "test": test
     }
     let xhr = new XMLHttpRequest();
     xhr.open("DELETE", "http://localhost:8080/api/favorites", false);
@@ -206,8 +202,8 @@ function testFavorite(testNumber, data) {
         return putToFavorite(data);
     } else {
 
-        return deleteFromDatabase(data);
+        return deleteFromDatabase(data, true);
     }
 
 }
-
+module.exports = testFavorite
