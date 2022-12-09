@@ -62,6 +62,4 @@ function login(testuser, testpass) {
 
     return xhr.responseText;
 }
-
-
-
+module.exports = login
