@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+console.log("testi");
 const connection = require('./js/databaseconnection');
 
 const query = util.promisify(connection.query).bind(connection);
