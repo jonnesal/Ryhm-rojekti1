@@ -24,17 +24,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-const connection = mysql.createConnection({
-    host: "10.114.34.75",
-    user: "remote",
-    password: "joku124",
-    database: "moseDB"
-});
-
-connection.connect(function(err) {
-    if (err) throw err;
-    else console.log("connected to the database successfully!")
-});
+const connection = require('./Js/databaseconnection.js');
 
 const query = util.promisify(connection.query).bind(connection);
 
