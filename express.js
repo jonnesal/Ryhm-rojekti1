@@ -124,6 +124,8 @@ app.post('/api/login', function(req, res) {
             loggedIn = true;
             console.log("expressjs loggedIn: " + loggedIn);
 
+            
+
             checkCurrentUser(username, password);
 
             response = "true";
@@ -149,6 +151,25 @@ function checkCurrentUser(username, password) {
     });
 
 }
+
+
+// ------------------------------------------------------------
+// returns true if user has loggedIn
+app.get('/api/loggedIn', function(req, res) {
+    res.send(loggedIn);
+});
+
+
+app.post('/api/logOut', function(req, res) {
+    currentUser = null;
+    loggedIn = false;
+    console.log("expressjs loggedIn: " + loggedIn);
+    console.log("currentUser: " + currentUser);
+})
+
+
+// ------------------------------------------------------------
+
 
 
 

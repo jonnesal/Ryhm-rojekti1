@@ -40,6 +40,7 @@ function login(testuser, testpass) {
             console.log("Bool toimii");
             loggedIn = true;
             console.log("loginjs loggedIn: " + loggedIn);
+            localStorage.setItem("loggedIn", loggedIn);
             if (testuser && testpass != null) {
                 console.log("testi suoritettu");
             } else {
@@ -64,4 +65,3 @@ function login(testuser, testpass) {
 
 
 
-module.exports = login
