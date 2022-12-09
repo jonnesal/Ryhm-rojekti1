@@ -36,7 +36,9 @@
         },
 
         "exports": {
-            "require": "./Js/databaseconnection.js"
+            "require": "./Js/databaseconnection.js",
+            "import": "./Js/databaseconnection.js"
+
         },
         "type": "module"
     }
