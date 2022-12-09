@@ -9,7 +9,6 @@ let newUrl;
 
 window.onload = function() {
     currentPage = 1;
-    console.log(url);
     searchUrl(url, 10)
 }
 
@@ -58,7 +57,7 @@ const printResults = (results) => {
             favorite.innerText = "Favorite";
 
             favorite.addEventListener("click", () => {
-
+                event.preventDefault();
                 putToFavorite(JSON.stringify(results), i, 1);
             });
 
@@ -69,9 +68,10 @@ const printResults = (results) => {
             entertainment.appendChild(favorite);
             entertainment.appendChild(cover);
 
-        } else if (i == 20) {
+        } else {
             searched = 0;
             currentPage++;
+            break;
         }
     }
 
@@ -102,7 +102,6 @@ const printResults = (results) => {
 
     next.addEventListener("click", () => {
         if (currentPage < totalPages + 1) {
-            console.log("heh");
             searchUrl(url, searchAmount);
         }
     })
