@@ -3,8 +3,28 @@ let defaultLocale = "en";
 let locale;
 let translations = {};
 let value;
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Käännetään sivu defaultLocale kieleen
+
+    if (localStorage.getItem("lang") === null) {
+        localStorage.setItem("lang" ,  "en");
+        selectElement('language-picker-select', "en");
+        setLocale(defaultLocale);
+    }else{
+        let chosenLang = localStorage.getItem("lang");
+        selectElement('language-picker-select', chosenLang);
+        setLocale(chosenLang);
+    }
+
+});
+
+function selectElement(id, valueToSelect) {
+    let element = document.getElementById(id);
+    element.value = valueToSelect;
+}
+
 //Switch select koodi
-//Vaihtaa valittuun kieleen
 function  changeLang(selectedValue){
     if(selectedValue === undefined) {
         value = "en";
@@ -39,26 +59,6 @@ function changePlaceHolders() {
     }catch (e){}
 }
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    // Käännetään sivu defaultLocale kieleen
-        let chosenLang = localStorage.getItem("lang");
-
-        selectElement('language-picker-select', chosenLang);
-
-        if(chosenLang === undefined) {
-            setLocale(defaultLocale);
-        }else{
-
-            setLocale(chosenLang);
-        }
-
-});
-
-function selectElement(id, valueToSelect) {
-    let element = document.getElementById(id);
-    element.value = valueToSelect;
-}
 // Lataa locale kielen ja laittaa sivun tähän kieleen.
 
 async function setLocale(newLocale) {
@@ -67,6 +67,7 @@ async function setLocale(newLocale) {
         await fetchTranslationsFor(newLocale);
     locale = newLocale;
     translations = newTranslations;
+    console.log(translations)
     translatePage();
 }
 
@@ -78,40 +79,6 @@ async function fetchTranslationsFor(newLocale) {
     });
     return await response.json();
 }
-
-// async function fetchTranslationsFor(newLocale) {
-//     const fetch = (...args) =>
-//         import ('node-fetch').then(({default: fetch}) => fetch(...args));
-
-//     const url =
-//     `./lang/${newLocale}.json`;
-
-//     const options = {
-//         method: 'GET',
-//         headers: {
-//             //Tätä ei tarvii mutta paska hajoo jos tän poistaa, muokkaan joskus
-//             'Content-Type': `/lang/${newLocale}.json`
-//         }
-//     };
-
-//     fetch(url, options)
-//         .then(res => res.json())
-//         .catch(err => console.error('error:' + err));
-//     try {
-//         let response = await fetch(url, options);
-
-//         response = await response.json();
-
-//         return response;
-
-
-//     } catch (err) {
-//         console.log(err);
-
-//     }
-// }
-
-
 
 // Käännetään kaikki kohdat missä tämä Key on
 
@@ -130,3 +97,5 @@ function translateElement(element) {
 
         changePlaceHolders();
 }
+
+module.exports = {fetchTranslationsFor, changeLang};
