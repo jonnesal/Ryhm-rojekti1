@@ -1,52 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0"/>
-    <meta charset="utf-8">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0"
+    />
+    <meta charset="utf-8" />
     <title>Register | WTW</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../css/style_alt.css">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../css/style_alt.css" />
+  </head>
 
-<body>
-
-    <a href="main.html"><span id="home" class="material-symbols-sharp">home</span></a>
+  <body>
+    <a href="main.html"
+      ><span id="home" class="material-symbols-sharp">home</span></a
+    >
 
     <div class="language-picker">
-        <form action="" class="language-picker-form">
-            <select name="language-picker-select" id="language-picker-select" onchange="changeLang(this)">
-                <option lang="en" value="en" selected>English</option>
-                <option lang="in" value="hindi">Hindi</option>
-            </select>
-        </form>
+      <form action="" class="language-picker-form">
+        <select
+          name="language-picker-select"
+          id="language-picker-select"
+          onchange="changeLang(this)"
+        >
+          <option lang="en" value="en" selected>English</option>
+          <option lang="in" value="hindi">Hindi</option>
+        </select>
+      </form>
     </div>
 
     <div class="box">
-        <h1 data-i18n-key="title">What To Watch</h1>
-            <form action="" method="POST">
-                <label hidden data-i18n-key="firstName" id="firstName">Username</label>
-                <label hidden data-i18n-key="lastName" id="lastName">Password</label>
-                <label hidden data-i18n-key="Username" id="placeholderName">Username</label>
-                <label hidden data-i18n-key="Password" id="PlaceholderPass">Password</label>
+      <h1 data-i18n-key="title">What To Watch</h1>
+      <form action="" method="POST">
+        <label hidden data-i18n-key="firstName" id="firstName">Username</label>
+        <label hidden data-i18n-key="lastName" id="lastName">Password</label>
+        <label hidden data-i18n-key="Username" id="placeholderName"
+          >Username</label
+        >
+        <label hidden data-i18n-key="Password" id="PlaceholderPass"
+          >Password</label
+        >
 
-                <input type="text" id="fname" name="firstName" class="input-field" placeholder="First Name" spellcheck="false"/>
-                <input type="text" id="lname" name="lastName" class="input-field" placeholder="Last Name" spellcheck="false"/>
-                <input type="email" id="userName" name="userName" class="input-field" placeholder="Username" spellcheck="false"/>
-                <input type="password" id="password" name="password" class="input-field" placeholder="Password" spellcheck="false"/>
-            </form>
-        <button id="register" type="submit"><span data-i18n-key="register">Register</span></button>
-        <br>
-        <br>
-        <a id="registeredquestion" href="login.html" data-i18n-key="registered?"> Already registered?</a>
-    </div>    
+        <input
+          type="text"
+          id="fname"
+          name="firstName"
+          class="input-field"
+          placeholder="First Name"
+          spellcheck="false"
+        />
+        <input
+          type="text"
+          id="lname"
+          name="lastName"
+          class="input-field"
+          placeholder="Last Name"
+          spellcheck="false"
+        />
+        <input
+          type="email"
+          id="userName"
+          name="userName"
+          class="input-field"
+          placeholder="Username"
+          spellcheck="false"
+        />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="input-field"
+          placeholder="Password"
+          spellcheck="false"
+        />
+      </form>
+      <button id="register" type="submit">
+        <span data-i18n-key="register">Register</span>
+      </button>
+      <br />
+      <br />
+      <a id="registeredquestion" href="login.html" data-i18n-key="registered?">
+        Already registered?</a
+      >
+    </div>
 
-<footer>
-<p class="footertext">Design by Emsa<br>Powered by TMDB</p>
-</footer>
-<script defer src="../Js/register.js"></script> <script src="../Js/translations.js"></script>
-</body>
+    <footer>
+      <p class="footertext">Design by Emsa<br />Powered by TMDB</p>
+    </footer>
+    <script defer src="../Js/register.js"></script>
+    <script src="../Js/translations.js"></script>
+  </body>
 </html>
