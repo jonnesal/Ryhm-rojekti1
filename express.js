@@ -25,7 +25,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-const connection = require("./js/databaseconnection");
+const connection = require("./Js/databaseconnection.js");
 
 const query = util.promisify(connection.query).bind(connection);
 
