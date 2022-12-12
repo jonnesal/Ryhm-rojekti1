@@ -10,7 +10,7 @@
     <title>Favorites | WTW</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/style.css">
-    <style> body {overflow: visible;} </style>
+    <style> ::-webkit-scrollbar { margin-right: 50px; } ::-webkit-scrollbar-track { background: #EEF5FC; } ::-webkit-scrollbar-thumb { background: #373947; } </style>
 </head>
 
 <body>
@@ -40,12 +40,9 @@
         <button id="search-button" type="button"><id="input-search-button"><span class="material-symbols-sharp" id="search-icon">search</span></button>
     </form>
 
-    <div>
-        <div id="favResults"></div>
-    </div>
+    <p class="bigtext" data-i18n-key="MainText">Your favorites</p>
 
-        </div>
-    </div>
+    <div id="favResults"></div>
     
 <footer>
     <p class="footertext">Design by Emsa<br>Powered by TMDB</p>

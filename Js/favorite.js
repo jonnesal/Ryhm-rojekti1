@@ -155,7 +155,6 @@ const printResults2 = (result) => {
         const cover = document.createElement("img");
         cover.src = "https://image.tmdb.org/t/p/original/" + result[i].imageURL;
         cover.setAttribute("class", "cover");
-        cover.style = "width:100%";
 
         const title = document.createElement("p");
         title.setAttribute("class", "title");
@@ -167,7 +166,6 @@ const printResults2 = (result) => {
         delFavorite.onclick = function() { deleteFromDatabase(title.innerHTML) };
 
         favResultsDiv.appendChild(container);
-        container.appendChild(title);
         container.appendChild(cover);
         container.appendChild(delFavorite);
 

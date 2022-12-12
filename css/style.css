@@ -102,6 +102,13 @@ body {
     color: #C7C7C7;
 }
 
+#prevAndNextButtons {
+    position: absolute;
+    top: 92.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #search-button {
     position: absolute;
     top: 6%;
@@ -211,7 +218,7 @@ body {
     z-index: 1000;
 }
 
-#cover {
+#cover, .cover {
     height: calc(131.5px + (505 - 131.5) * ((100vw - 500px) / (1920 - 500)));
     width: 100%;
     aspect-ratio: 2/4;
@@ -221,13 +228,12 @@ body {
     margin-bottom: -25px;
 }
 
-#results {
+#results, #favResults {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
     position: absolute;
-    top: 50%;
     left: 46.9%;
     transform: translate(-50%, -50%);
     overflow-y: scroll;
@@ -238,6 +244,14 @@ body {
     height: 75vh;
     max-height: 75vh;
     margin-top: 45px;    
+}
+
+#results {
+    top: 48%;
+}
+
+#favResults {
+    top: 50%;
 }
 
 .buttons {
@@ -288,7 +302,7 @@ body {
     color: var(--white);
 }
 
-#favorite, .previousButton, .nextButton {
+#favorite, .previousButton, .nextButton, .deleteFavorite {
     font-family: "Manrope", sans-serif;
     background-color: var(--background);
     border-color: var(--white);
@@ -298,10 +312,17 @@ body {
     border-width: 1px;
 }
 
-#favorite {
+#favorite, .deleteFavorite {
     position: relative;
-    left: 61.2%;
-    transform: translate(0%, -150%);
+    transform: translate(50%, -150%);
+}
+
+#favorite {
+    left: 54.2%;
+}
+
+.deleteFavorite {
+    left: -72.9%;
 }
 
 #favorite:hover, .previousButton:hover, .nextButton:hover {
