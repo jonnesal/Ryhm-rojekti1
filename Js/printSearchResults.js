@@ -68,7 +68,7 @@ const printResults = (results) => {
 
             const cover = document.createElement("img");
             cover.src = "https://image.tmdb.org/t/p/original/" + results.results[i].poster_path
-            cover.setAttribute("id", "cover");
+            cover.setAttribute("class", "cover");
 
             const favorite = document.createElement("button");
             favorite.setAttribute("id", "favorite");
