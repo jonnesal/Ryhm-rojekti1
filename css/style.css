@@ -323,6 +323,7 @@ body {
 
 .deleteFavorite {
     left: -72.9%;
+    cursor: pointer;
 }
 
 #favorite:hover, .previousButton:hover, .nextButton:hover {

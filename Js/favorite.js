@@ -162,8 +162,8 @@ const printResults2 = (result) => {
 
         const delFavorite = document.createElement("button");
         delFavorite.setAttribute("class", "deleteFavorite")
-        delFavorite.innerText = "delete";
-        delFavorite.onclick = function() { deleteFromDatabase(title.innerHTML) };
+        delFavorite.innerText = "Delete";
+        delFavorite.onclick = function() { deleteFromDatabase(title.innerHTML); window.location.reload() };
 
         favResultsDiv.appendChild(container);
         container.appendChild(cover);
