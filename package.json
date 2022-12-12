@@ -16,7 +16,7 @@
         "jquery": "^3.6.1",
         "mariadb": "^3.0.2",
         "mysql": "^2.18.1",
-        "node-fetch": "^3.2.10",
+        "node-fetch": "^3.3.0",
         "nodemon": "^2.0.20",
         "server": "^1.0.37",
         "url": "^0.11.0",
@@ -27,11 +27,12 @@
         "jest": "^29.3.1",
         "jsdoc": "^4.0.0"
     },
-
     "jest": {
         "verbose": true,
         "testEnvironment": "jsdom",
-        "setupFiles": ["./setup-jest.js"],
+        "setupFiles": [
+            "./setup-jest.js"
+        ],
         "testEnvironmentOptions": {
             "url": "http://localhost:8080"
         }

@@ -107,3 +107,5 @@ const printResults = (results) => {
     })
 
 }
+
+module.exports = searchUrl;

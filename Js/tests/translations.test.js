@@ -32,6 +32,3 @@ describe('Kokeillaan toimiiko: fetchTranslationsFor', () => {
         expect(fetch).toHaveBeenCalledWith(`../lang/${newLocale}.json`, { mode: 'no-cors' });
     });
 });
-
-
-

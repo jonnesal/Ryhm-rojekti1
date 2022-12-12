@@ -28,5 +28,8 @@
   "Password": "Password",
   "firstName": "First Name",
   "lastName": "Last Name",
-  "rouletteText": "Make your selections and spin the roulette!"
+  "rouletteText": "Make your selections and spin the roulette!",
+  "MainText": "Search results",
+  "Search": "Search",
+  "logOut": "logOut"
 }
