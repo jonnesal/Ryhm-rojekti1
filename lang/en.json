@@ -30,5 +30,6 @@
   "rouletteText": "Make your selections and spin the roulette!",
   "Search": "Search",
   "SearchResults": "Search results",
-  "logOut": "Log out"
+  "logOut": "Log out",
+  "minimumRating": "What's the minimum rating?"
 }
