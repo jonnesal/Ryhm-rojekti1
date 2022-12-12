@@ -5,7 +5,7 @@
   "register": "रजिस्टर",
   "registered?": "पहले से ही पंजीकृत?",
   "favorites": "पसंदीदा",
-  "MainText": "आप देखने के लिए एक फिल्म कैसे देखना चाहते हैं?",
+  "Maintxt": "आप देखने के लिए एक फिल्म कैसे देखना चाहते हैं?",
   "login": "लॉग इन",
   "questions": "प्रशन",
   "roulette": "रूले",
@@ -25,10 +25,12 @@
   "Thriller": "थ्रिलर",
   "Username": "प्रयोक्ता नाम",
   "Password": "पासवर्ड",
-  "firstName": "सरनेम",
   "lastName": "प्रथम नाम",
+  "firstName": "सरनेम",
   "rouletteText": "अपने चयन करें और रूलेट स्पिन करें!",
+  "MainText": "खोज के परिणाम",
   "Search": "खोज",
-  "SearchResults": "खोज के परिणाम",
-  "logOut": "लॉग आउट"
+  "logOut": "लॉग आउट",
+  "minimumRating": "न्यूनतम रेटिंग क्या है?",
+  "yourFavorites": "आपका पसंदीदा"
 }
