@@ -60,6 +60,7 @@ const printResults = (results) => {
       cover.alt = "Cover of " + results.results[i].original_name;
       entertainment.href = "https://www.themoviedb.org/tv/" + mediaId;
     }
+    entertainment.setAttribute("target", "_blank");
 
     cover.style = "width:100%";
 
