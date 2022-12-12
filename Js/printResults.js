@@ -70,6 +70,7 @@ const printResults = (results) => {
 
     //tallenetaan kyseisen favoriten tiedot
     favorite.addEventListener("click", () => {
+      event.preventDefault();
       putToFavorite(JSON.stringify(results), i, typeValue);
     });
 
