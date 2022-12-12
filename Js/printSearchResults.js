@@ -18,14 +18,13 @@ const searchUrl = async (url, Amount, test) => {
     booleanTest = true;
     newUrl = "";
     newUrl += url + "&page=" + 1;
-    console.log(newUrl);
 
     fetch(newUrl)
       .then((response) => response.json())
       .then((results) => {
         return JSON.stringify(results);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log("testi toimii"));
   } else {
     newUrl = "";
     newUrl += url + "&page=" + currentPage;
