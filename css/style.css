@@ -104,7 +104,7 @@ body {
 
 #prevAndNextButtons {
     position: absolute;
-    top: 92.5%;
+    top: 93%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -194,7 +194,7 @@ body {
     position: relative;
     background-color: var(--lighterbackground);
     height: calc(123.42px + (474 - 123.42) * ((100vw - 500px) / (1920 - 500)));
-    aspect-ratio: 2/3;
+    aspect-ratio: 0.67/1;
 }
 
 #title {
@@ -218,7 +218,7 @@ body {
     z-index: 1000;
 }
 
-#cover, .cover {
+.cover {
     height: calc(131.5px + (505 - 131.5) * ((100vw - 500px) / (1920 - 500)));
     width: 100%;
     aspect-ratio: 2/4;
@@ -226,6 +226,12 @@ body {
     border-style: solid;
     border-color: var(--background);
     margin-bottom: -25px;
+}
+
+#cover {
+    width: 100%;
+    aspect-ratio: 0.67/1;
+    border-color: var(--background);
 }
 
 #results, #favResults {
@@ -247,7 +253,7 @@ body {
 }
 
 #results {
-    top: 48%;
+    top: 49%;
 }
 
 #favResults {
@@ -302,7 +308,7 @@ body {
     color: var(--white);
 }
 
-#favorite, .previousButton, .nextButton, .deleteFavorite {
+#favorite, .previousButton, .nextButton, .deleteFavorite, #favorite_roulette {
     font-family: "Manrope", sans-serif;
     background-color: var(--background);
     border-color: var(--white);

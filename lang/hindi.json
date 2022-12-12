@@ -23,13 +23,12 @@
   "Horror": "डरावना",
   "Romance": "रोमांस",
   "Thriller": "थ्रिलर",
-  "Search": "खोज",
   "Username": "प्रयोक्ता नाम",
   "Password": "पासवर्ड",
-  "lastName": "प्रथम नाम",
   "firstName": "सरनेम",
+  "lastName": "प्रथम नाम",
   "rouletteText": "अपने चयन करें और रूलेट स्पिन करें!",
-  "MainText": "खोज के परिणाम",
   "Search": "खोज",
+  "SearchResults": "खोज के परिणाम",
   "logOut": "लॉग आउट"
 }
