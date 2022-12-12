@@ -23,8 +23,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-const connection = require('./js/databaseconnection');
-
+const connection = require('./Js/databaseConnection');
 const query = util.promisify(connection.query).bind(connection);
 
 const loginRoute = require('./routes/loginRouter');

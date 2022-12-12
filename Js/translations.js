@@ -46,15 +46,18 @@ function changePlaceHolders() {
         let lastName = document.getElementById('lastName');
         let username = document.getElementById('placeholderName');
         let password = document.getElementById('PlaceholderPass');
+        let search = document.getElementById('search');
 
         if(firstName !== null) {
             document.getElementsByName('firstName')[0].placeholder=firstName.innerText;
             document.getElementsByName('lastName')[0].placeholder=lastName.innerText;
             document.getElementsByName('userName')[0].placeholder=username.innerText;
             document.getElementsByName('password')[0].placeholder=password.innerText;
-        }else{
+        }else if (username !== null){
             document.getElementsByName('username')[0].placeholder=username.innerText;
             document.getElementsByName('password')[0].placeholder=password.innerText;
+        }else{
+            document.getElementsByName('entertainmentName')[0].placeholder=search.innerText;
         }
     }catch (e){}
 }
@@ -98,4 +101,4 @@ function translateElement(element) {
         changePlaceHolders();
 }
 
-module.exports = {fetchTranslationsFor, changeLang};
+module.exports = {fetchTranslationsFor, changeLang, translatePage, translateElement};
