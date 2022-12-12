@@ -2,7 +2,8 @@ const resultsDiv = document.querySelector("#results");
 const url = localStorage.getItem("Searchurl");
 let searchAmount;
 let typevalue2 = localStorage.getItem("typevalueforsearch");
-let currentPage;
+let currentPage = 1;
+let booleanTest = false;
 const searchDiv = document.querySelector("#prevAndNextButtons");
 let searched = 0;
 let newUrl;
@@ -12,15 +13,32 @@ window.onload = function() {
     searchUrl(url, 10)
 }
 
-const searchUrl = (url, Amount) => {
-    newUrl = ''
-    newUrl += url + '&page=' + currentPage;
-    console.log(newUrl);
-    searchAmount = Amount;
-    fetch(newUrl)
-        .then(response => response.json())
-        .then(results => printResults(results))
-        .catch(error => console.log(error));
+const searchUrl = async (url, Amount, test) => {
+    if (test === true) {
+        booleanTest = true;
+        newUrl = ''
+        newUrl += url + '&page=' + 1;
+        console.log(newUrl);
+
+        fetch(newUrl)
+            .then(response => response.json())
+            .then(results => {
+                return JSON.stringify(results);
+            })
+            .catch(error => console.log(error));
+
+    } else {
+
+
+        newUrl = ''
+        newUrl += url + '&page=' + currentPage;
+        console.log(newUrl);
+        searchAmount = Amount;
+        fetch(newUrl)
+            .then(response => response.json())
+            .then(results => printResults(results))
+            .catch(error => console.log(error));
+    }
 }
 
 const printResults = (results) => {
