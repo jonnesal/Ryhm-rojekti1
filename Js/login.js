@@ -1,14 +1,22 @@
-const loginButton = document.querySelector("#loginButton");
+
 
 let loggedIn = false;
 
-// Add login function to the login button
+/**
+ * Add login function to the login button
+ */
 $(document).ready(function () {
   $("#loginButton").click(function () {
     login();
   });
 });
 
+/**
+ * Sends a username and password as a request to express 
+ * @param {String} testuser Username for testing purposes
+ * @param {String} testpass User password for testing purposes
+ * @returns responseText from the request
+ */
 function login(testuser, testpass) {
   let userName;
   let password;

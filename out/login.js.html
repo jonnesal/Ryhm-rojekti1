@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: login.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,79 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: login.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
 
+let loggedIn = false;
 
-    <h3> </h3>
+/**
+ * Add login function to the login button
+ */
+$(document).ready(function () {
+  $("#loginButton").click(function () {
+    login();
+  });
+});
 
+/**
+ * Sends a username and password as a request to express 
+ * @param {String} testuser Username for testing purposes
+ * @param {String} testpass User password for testing purposes
+ * @returns responseText from the request
+ */
+function login(testuser, testpass) {
+  let userName;
+  let password;
 
+  if (testuser &amp;&amp; testpass != null) {
+    userName = testuser;
+    password = testpass;
+  } else {
+    userName = document.getElementById("username").value;
+    password = document.getElementById("password").value;
+  }
 
+  const data = {
+    username: userName,
+    password: password,
+  };
 
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://localhost:8080/api/login", false);
+  xhr.setRequestHeader("Accept", "application/json");
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onload = function () {
+    if (xhr.responseText == "true") {
+      loggedIn = true;
 
+      localStorage.setItem("loggedIn", loggedIn);
+      if (testuser &amp;&amp; testpass != null) {
+      } else {
+        window.location.href = "../html/main.html";
+      }
+    } else {
+      loggedIn = false;
+    }
+  };
 
+  let eventString = JSON.stringify(data);
 
+  xhr.send(eventString);
 
-
-
-    
-
-
-
-
-
+  return xhr.responseText;
+}
+module.exports = login;
+</code></pre>
+        </article>
+    </section>
 
 
 
