@@ -27,6 +27,14 @@ advancedButton.addEventListener("click", () => {
   generate();
 });
 
+/**
+ * Generates url with user's choices
+ * @param {String} url Generates url here
+ * @param {Number} typevalue User's picked type
+ * @param {Number} genrevalue User's picked genre
+ * @param {Number} rating User's picked rating
+ */
+
 function generate() {
   let url;
   let typevalue = document.querySelector('input[name="type"]:checked').value;

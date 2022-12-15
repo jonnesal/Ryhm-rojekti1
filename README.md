@@ -2,6 +2,10 @@
 
 ### Projektin tekijät: Matias Lindblom, Jeremias Ahonen, Jonne Salli ja Emil Munne
 
+# Dokumentaatio
+
+- [Jsdoc](<https://users.metropolia.fi/~jeremah/JsDoc/JsDoc%20(WTW)/global.html>)
+
 # Projektin kuvaus
 
 Jos et tiedä, mitä haluat katsoa, voit käyttää tuotettamme löytämään vaivattomasti itsellesi sopivan elokuvan tai sarjan. Tärkeimmät ominaisuudet ovat:

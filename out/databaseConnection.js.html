@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: databaseConnection.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,40 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: databaseConnection.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const mysql = require("mysql");
 
+/**
+ * Connection to database
+ * @param {String} host IP where to connect
+ * @param {String} user Database account username
+ * @param {String} password Database account password
+ * @param {String} database Database name
+ */
+const connection = mysql.createConnection({
+  host: "10.114.34.75",
+  user: "remote",
+  password: "joku124",
+  database: "moseDB",
+});
 
-    <h3> </h3>
+connection.connect(function (err) {
+  if (err) throw err;
+  else console.log("connected to the database successfully!");
+});
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = connection;
+</code></pre>
+        </article>
+    </section>
 
 
 
