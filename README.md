@@ -5,20 +5,19 @@
 # Projektin kuvaus
 
 Jos et tiedä, mitä haluat katsoa, voit käyttää tuotettamme löytämään vaivattomasti itsellesi sopivan elokuvan tai sarjan. Tärkeimmät ominaisuudet ovat:
-- Luettelo, joka näyttää korkealle arvioidut elokuvat/sarjat valitsemiesi vaihtoehtojen perusteella
+
+- Etsimistoiminto, jossa voit suoraan etsiä elokuvan/sarjan nimellä
 - Vaihtoehtoja, joista voit valita itseä kiinnostavat, joka näyttää sinulle vastaustesi perusteella luettelon elokuvista tai sarjoista
 - Ruletti, joka arpoo elokuvan tai sarjan valitsemiesi vaihtoehtojen perusteella
-
+- Käyttäjä spesifinen suosikkeihin laittaminen, jotta et unohda suosikki mediaasi!
 
 # Asennuksen alkuvaiheet
 
-Avaa Git Bash haluamaasi hakemistoon ja syötä komento: 
+Avaa Git Bash haluamaasi hakemistoon ja syötä komento:
 
-```git clone https://github.com/jonnesal/Ryhmaprojekti1.git```
+`git clone https://github.com/jonnesal/Ryhmaprojekti1.git`
 
-Avaa haluamasi terminaali projektin sisään mihin syötät komennon ```npm install```
-	
-
+Avaa haluamasi terminaali projektin sisään mihin syötät komennon `npm install`
 
 # Käytetyt paketit
 
@@ -28,38 +27,45 @@ Avaa haluamasi terminaali projektin sisään mihin syötät komennon ```npm inst
 - mysql
 - path
 - nodemon
+- Jest
+
 # Serverin käynnistys
 
+**Koulun VPN on laitettava päälle** että serveri saadaan käyntiin
+
 Serveri käynnistyy komennolla:
- ```npm run startexp```
+`npm run startexp`
 
-Jonka jälkeen pystytään kommunikoimaan serverin kanssa
+Jonka jälkeen serveri alkaa kommunikoimaan tietokannan kanssa
 
+**(Jotta sovellus toimii on serveri laitettava päälle!)**
 
-# Setup for database 
+# Yhteys tietokantaan
 
-Ensiksi sun pitää rakentaa tietokanta, jonka rakenne sijaitsee sql/database.sql
-Sen jälkeen pitää mennä muuttamaan Js/databaseConnection.js tiedot oman tietokannan salasanalla sekä käyttäjänimellä
+Tietokanta ottaa yhteyden koulun palvelimelle, Databaseconnection.js:ssä määritetään tiedot mihin yhteys otetaan
+
+**DatabaseConnection.js**
 
 ```js
 module.exports = {
-    credentials: {
-        host: "localhost",
-        user: "YourUsername",
-        password: "YourPassword",
-        database: "moseDB"
-    }
-}
+  credentials: {
+    host: "10.114.34.75",
+    user: "remote",
+    password: "joku124",
+    database: "moseDB",
+  },
+};
 ```
 
+(Normaalisti, emme laittaisi tietokannan tietoja readme:hin, mutta tässä koulun projektissa kun muutenkin pitää olla koulun VPN se on ihan turvallista)
 
-## Database structure
+## Tietokanta rakenne
 
 ```shell
 DROP DATABASE moseDB;
 CREATE DATABASE moseDB;
 use moseDB;
- 
+
 CREATE TABLE users
 (
   user_id INT NOT NULL AUTO_INCREMENT,
@@ -69,7 +75,7 @@ CREATE TABLE users
   user_pass VARCHAR(40) NOT NULL,
   PRIMARY KEY (user_id)
 );
- 
+
 CREATE TABLE Favorite
 (
   favorite_ID INT NOT NULL AUTO_INCREMENT,
@@ -81,7 +87,7 @@ CREATE TABLE Favorite
   PRIMARY KEY (favorite_ID),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
- 
+
 CREATE TABLE History
 (
   history_ID INT NOT NULL AUTO_INCREMENT,
@@ -94,3 +100,25 @@ CREATE TABLE History
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 ```
+
+# Testien lokaalinen ajaminen
+
+Testit voidaan ajaa lokaalisesti käyttämällä komentoa
+`npm test`
+
+Testeihin kuuluu:
+
+- Suosikkeihin lisääminen ja poisto
+- Kirjautuminen sekä rekisteröityminen
+- Lokaalisaatio (Kielen vaihtuminen)
+- Api tuloksen hakeminen
+
+## Jenkins
+
+Jenkinsiin pääsee kirjautumaan http://10.114.32.23:8080 **(HUOM! tähänkin tarvii olla koulun vpn)**
+
+Testejä pääsee katsomaan käyttäjällä:
+
+Username: testi || Password: testi123
+
+(Normaalisti, emme laittaisi jenkins tietoja readme:hin, mutta tässä koulun projektissa kun muutenkin pitää olla koulun VPN se on ihan turvallista)

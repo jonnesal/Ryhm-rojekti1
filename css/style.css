@@ -102,6 +102,13 @@ body {
     color: #C7C7C7;
 }
 
+#prevAndNextButtons {
+    position: absolute;
+    top: 93%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #search-button {
     position: absolute;
     top: 6%;
@@ -187,7 +194,7 @@ body {
     position: relative;
     background-color: var(--lighterbackground);
     height: calc(123.42px + (474 - 123.42) * ((100vw - 500px) / (1920 - 500)));
-    aspect-ratio: 2/3;
+    aspect-ratio: 0.67/1;
 }
 
 #title {
@@ -209,9 +216,10 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
+    cursor: pointer;
 }
 
-#cover {
+.cover {
     height: calc(131.5px + (505 - 131.5) * ((100vw - 500px) / (1920 - 500)));
     width: 100%;
     aspect-ratio: 2/4;
@@ -221,13 +229,18 @@ body {
     margin-bottom: -25px;
 }
 
-#results {
+#cover {
+    width: 100%;
+    aspect-ratio: 0.67/1;
+    border-color: var(--background);
+}
+
+#results, #favResults {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
     position: absolute;
-    top: 50%;
     left: 46.9%;
     transform: translate(-50%, -50%);
     overflow-y: scroll;
@@ -238,6 +251,14 @@ body {
     height: 75vh;
     max-height: 75vh;
     margin-top: 45px;    
+}
+
+#results {
+    top: 49%;
+}
+
+#favResults {
+    top: 50%;
 }
 
 .buttons {
@@ -288,7 +309,7 @@ body {
     color: var(--white);
 }
 
-#favorite, .previousButton, .nextButton {
+#favorite, .previousButton, .nextButton, .deleteFavorite, #favorite_roulette {
     font-family: "Manrope", sans-serif;
     background-color: var(--background);
     border-color: var(--white);
@@ -298,10 +319,22 @@ body {
     border-width: 1px;
 }
 
-#favorite {
+#favorite:hover, .previousButton:hover, .nextButton:hover, .deleteFavorite:hover, #favorite_roulette:hover, label span:hover {
+    background-color: var(--lightestbackground);
+}
+
+#favorite, .deleteFavorite {
     position: relative;
-    left: 61.2%;
-    transform: translate(0%, -150%);
+    transform: translate(50%, -150%);
+}
+
+#favorite {
+    left: 54.2%;
+}
+
+.deleteFavorite {
+    left: -72.9%;
+    cursor: pointer;
 }
 
 #favorite:hover, .previousButton:hover, .nextButton:hover {

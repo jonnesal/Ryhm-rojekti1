@@ -23,13 +23,14 @@
   "Horror": "Horror",
   "Romance": "Romance",
   "Thriller": "Thriller",
-  "Search": "Search",
   "Username": "Username",
   "Password": "Password",
   "firstName": "First Name",
   "lastName": "Last Name",
   "rouletteText": "Make your selections and spin the roulette!",
-  "MainText": "Search results",
-  "logOut": "logOut",
-  "averageScore": "averageScore"
+  "Search": "Search",
+  "SearchResults": "Search results",
+  "logOut": "Log out",
+  "minimumRating": "What's the minimum rating?",
+  "yourFavorites": "Your favorites"
 }

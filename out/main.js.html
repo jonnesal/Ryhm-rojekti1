@@ -27,46 +27,123 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>
+let logOutBtn = document.querySelector("#logOut");
 
+let logged = localStorage.getItem("loggedIn");
+
+/**
+ * Call checkIfLoggedIn() when page has loaded
+ * Check if user has logged in. If so call hideButtons()
+ * If not call showButtons()
+ * Add logOut function to the log out button
+ */
 document.addEventListener("DOMContentLoaded", () => {
-	let logTesti = localStorage.getItem("loggedIn");
 
-	console.log("testi2" );
+	console.log("Main.js logged: " + logged);
+	checkIfLoggedIn();
 
-	moro();
-
-	if (logged) {
-		console.log("show buttons");
-		showButtons();
-	} else {
+	if (logged == "true") {
 		console.log("hide buttons");
 		hideButtons();
+	} 
+	else {
+		console.log("show buttons");
+		showButtons();
 	}
+
+	logOutBtn.addEventListener("click", () => {
+		logOut(logged);
+	});
 
 });
 
 
+/**
+ * Sends a request to the express and returns variable loggedIn
+ * which we use to check if someone is logged in
+ */
+function checkIfLoggedIn() {
 
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", "http://localhost:8080/api/loggedIn");
+	xhr.setRequestHeader("Accept", "application/json");
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.onload = function () {
+		if (xhr.readyState === xhr.DONE) {
+			if (xhr.status === 200) {
+
+				let response = xhr.response;
+
+				localStorage.setItem("loggedIn", response);
+			}
+		}
+	}
+	xhr.send();
+}
+
+/**
+ * Used to make the user log out
+ * We use the variable logIn to check if user has logged in and if so we call the logOutRequest function
+ * If not we set the localStorage variable loggedIn = false
+ * @param {Boolean} logIn Whether or not someone is logged in 
+ */
+function logOut(logIn) {
+	console.log("logOut function loggedIn: " + logIn);
+	if (logIn == "true") {
+		console.log("Kirjauduit ulos!");
+		localStorage.setItem("loggedIn", "false");
+		logOutRequest();
+	} 
+	else {
+		console.log("Kirjaudu ensin sisään, kiitos!");
+		localStorage.setItem("loggedIn", "false");
+
+	}
+}
+
+/**
+ * Sends the log out request to express 
+ */
+function logOutRequest() {
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "http://localhost:8080/api/logOut");
+	xhr.setRequestHeader("Accept", "application/json");
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.onload = function () {
+		if (xhr.readyState === xhr.DONE) {
+			if (xhr.status === 200) {
+
+				let response = xhr.response;
+			}
+		}
+	}
+	xhr.send();
+}
 
 
 
 /**
- * Represents a book.
- * moi
+ * Function that is called if you are logged in
+ * Hides login and register button and shows favorites
  */
 function hideButtons() {
-	document.getElementById("loginA").style.display = "none";
-	document.getElementById("registerA").style.display = "none";
-	console.log("testi3");
+	document.getElementById("login").style.display = "none";
+	document.getElementById("register").style.display = "none";
+	document.getElementById("favorites").style.display = "unset";
+	document.getElementById("logOut").style.display = "unset";
 }
 
+/**
+ * Function that is called if you are not logged in
+ * Shows login and register button and hides favorites and log out button
+ */
 function showButtons() {
-	document.getElementById("loginA").style.display = "unset";
-	document.getElementById("registerA").style.display = "unset";
-	console.log("testi4");
-}
-
-</code></pre>
+	document.getElementById("login").style.display = "unset";
+	document.getElementById("register").style.display = "unset";
+	document.getElementById("favorites").style.display = "none";
+	document.getElementById("logOut").style.display = "none";
+}</code></pre>
         </article>
     </section>
 
@@ -76,13 +153,13 @@ function showButtons() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#hideButtons">hideButtons</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#checkIfLoggedIn">checkIfLoggedIn</a></li><li><a href="global.html#deleteAccFromDatabase">deleteAccFromDatabase</a></li><li><a href="global.html#deleteFromDatabase">deleteFromDatabase</a></li><li><a href="global.html#getFavorites">getFavorites</a></li><li><a href="global.html#getFavoritesCount">getFavoritesCount</a></li><li><a href="global.html#hideButtons">hideButtons</a></li><li><a href="global.html#loadFavorites">loadFavorites</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#logOutRequest">logOutRequest</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#printResults2">printResults2</a></li><li><a href="global.html#putToFavorite">putToFavorite</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#showButtons">showButtons</a></li><li><a href="global.html#testFavorite">testFavorite</a></li><li><a href="global.html#testRegister">testRegister</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Dec 09 2022 14:08:21 GMT+0200 (Eastern European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Dec 14 2022 18:33:50 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

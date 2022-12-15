@@ -170,12 +170,17 @@ function checkCurrentUser(username, password) {
   });
 }
 
-// ------------------------------------------------------------
-// returns true if user has loggedIn
+/**
+ * returns true if user has loggedIn
+ */
 app.get("/api/loggedIn", function (req, res) {
   res.send(loggedIn);
 });
 
+/**
+ * Set variable currentUser = null
+ * and loggedIn = false
+ */
 app.post("/api/logOut", function (req, res) {
   currentUser = null;
   loggedIn = false;
@@ -183,7 +188,6 @@ app.post("/api/logOut", function (req, res) {
   console.log("currentUser: " + currentUser);
 });
 
-// ------------------------------------------------------------
 
 // Get all from favorites
 searchRouter.get("/api/favorites", function (req, res) {
