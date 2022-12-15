@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: search.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,43 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: search.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const searchButton = document.querySelector("#search-button");
 
+searchButton.addEventListener("click", () => {
+  console.log("testi");
+  searching();
+});
 
-    <h3> </h3>
+/**
+ * Generates url from the users given input and saves it to localStorage
+ * @param {String} url url is saved here
+ */
 
+function searching() {
+  let url;
+  let specificEntertainment = document.getElementById("entertainmentId").value;
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+  //Jos halutaan tietyllä nimellä etsiä, input kenttä ei ole tyhjä niin tapahtuu tämä if
+  if (specificEntertainment !== "") {
+    url = `https://api.themoviedb.org/3/search/multi?api_key=ffbef3b4a61b4f7178a8fe83e0ad8b9d&amp;language=en-US&amp;query=${specificEntertainment}&amp;page=1&amp;include_adult=false`;
+    localStorage.setItem("Searchurl", url);
+    location.href = "../html/search.html";
+  } else {
+    console.log("Leffaa/sarjaa ei löytynyt!");
+  }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

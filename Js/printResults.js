@@ -24,6 +24,11 @@ function showButtons() {
   document.getElementById("register").style.display = "unset";
 }
 
+/**
+ * Fetches data and amount
+ * @param {String} url Url where to fetch
+ * @param {Number} Amount Amount of results
+ */
 const searchUrl = (url, Amount, type) => {
   searchAmount = Amount;
   typeValue = type;
@@ -32,6 +37,11 @@ const searchUrl = (url, Amount, type) => {
     .then((results) => printResults(results))
     .catch((error) => console.log(error));
 };
+
+/**
+ * Prints results to the page and favorite button
+ * @param {JSON} results Fetched api results
+ */
 
 const printResults = (results) => {
   resultsDiv.innerHTML = ``;
