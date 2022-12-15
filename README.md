@@ -5,6 +5,8 @@
 # Dokumentaatio
 
 - [Jsdoc](<https://users.metropolia.fi/~jeremah/JsDoc/JsDoc%20(WTW)/global.html>)
+- [Projektin dokumentaatio](https://github.com/jonnesal/Ryhmaprojekti1/blob/main/Documents/What%20To%20Watch%20dokumentaatio.pdf)
+- [Projektin käyttöohje](https://github.com/jonnesal/Ryhmaprojekti1/blob/main/Documents/What%20to%20Watch%20Käyttöohje.pdf)
 
 # Projektin kuvaus
 
